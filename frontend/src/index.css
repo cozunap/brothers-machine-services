@@ -363,11 +363,11 @@ img {
 
 .nav-link {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 15px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--color-navy);
-  font-weight: 600;
+  font-weight: 400;
   padding-block: 0.35rem;
   position: relative;
 }
