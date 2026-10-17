@@ -21,27 +21,56 @@ export const Header: React.FC<HeaderProps> = ({ settings }) => {
 
   return (
     <header className="site-header" style={{ position: 'sticky', top: 0, zIndex: 1000 }}>
-      {/* Top Telemetry Strip */}
+      {/* Top Telemetry Strip: Live Field Mobilization Status */}
       <div className="header-top-bar">
         <div className="container top-bar-inner">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <span style={{ color: 'var(--color-steel-blue)', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-              <span className="eyebrow-dot" style={{ width: 5, height: 5 }}></span>
-              STATIONED ON-SITE:
-            </span>
-            <span>{settings.shipyard_1}</span>
-            <span style={{ opacity: 0.3 }}>/</span>
-            <span>{settings.shipyard_2}</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              <span
+                style={{
+                  width: 7,
+                  height: 7,
+                  borderRadius: '50%',
+                  backgroundColor: '#10b981',
+                  boxShadow: '0 0 6px #10b981',
+                  display: 'inline-block',
+                }}
+              />
+              <span style={{ color: '#ffffff', fontWeight: 600 }}>{settings.shipyard_1}:</span>
+              <span style={{ color: '#10b981', fontWeight: 700, fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                ACTIVE ON-SITE
+              </span>
+            </div>
+
+            <span style={{ opacity: 0.25 }}>|</span>
+
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              <span
+                style={{
+                  width: 7,
+                  height: 7,
+                  borderRadius: '50%',
+                  backgroundColor: '#10b981',
+                  boxShadow: '0 0 6px #10b981',
+                  display: 'inline-block',
+                }}
+              />
+              <span style={{ color: '#ffffff', fontWeight: 600 }}>{settings.shipyard_2}:</span>
+              <span style={{ color: '#10b981', fontWeight: 700, fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                ACTIVE ON-SITE
+              </span>
+            </div>
           </div>
+
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
               <Shield size={13} color="var(--color-steel-blue)" />
-              {settings.insurance_line}
+              <span style={{ color: '#cbd5e1' }}>$5M Marine Insured</span>
             </span>
-            <span style={{ opacity: 0.3 }}>/</span>
-            <a href={`tel:${settings.phone.replace(/[^0-9]/g, '')}`} style={{ color: '#fff', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+            <span style={{ opacity: 0.25 }}>|</span>
+            <a href={`tel:${settings.phone.replace(/[^0-9]/g, '')}`} style={{ color: '#fff', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
               <Phone size={13} color="var(--color-orange)" />
-              24/7 Dispatch: <span style={{ color: 'var(--color-steel-blue)' }}>{settings.phone}</span>
+              24/7 Field Dispatch: <span style={{ color: 'var(--color-steel-blue)' }}>{settings.phone}</span>
             </a>
           </div>
         </div>
