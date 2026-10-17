@@ -302,16 +302,16 @@ export const Home: React.FC<HomeProps> = ({ settings, services, gallery }) => {
 
           <div className="grid-3">
             {gallery.slice(0, 6).map((item) => (
-              <div key={item.id} className="card" style={{ padding: 0, overflow: 'hidden' }}>
-                <div style={{ width: '100%', height: 260, overflow: 'hidden' }}>
-                  <img src={item.image_url} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div key={item.id} className="card" style={{ padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <div style={{ width: '100%', aspectRatio: '4 / 3', overflow: 'hidden', position: 'relative', background: 'var(--color-navy)' }}>
+                  <img src={item.image_url} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 </div>
-                <div style={{ padding: '1.25rem 1.5rem' }}>
+                <div style={{ padding: '1.25rem 1.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-steel-blue)', textTransform: 'uppercase', marginBottom: 4 }}>
                     {item.category}
                   </div>
                   <h4 style={{ fontSize: '1.1rem', marginBottom: '0.35rem' }}>{item.title}</h4>
-                  <p style={{ fontSize: '0.88rem' }}>{item.caption}</p>
+                  <p style={{ fontSize: '0.88rem', marginTop: 'auto' }}>{item.caption}</p>
                 </div>
               </div>
             ))}

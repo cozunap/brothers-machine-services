@@ -85,13 +85,16 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
                   padding: 0,
                   overflow: 'hidden',
                   cursor: 'pointer',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  height: '100%',
                 }}
               >
-                <div style={{ width: '100%', height: 280, overflow: 'hidden', position: 'relative' }}>
+                <div style={{ width: '100%', aspectRatio: '4 / 3', overflow: 'hidden', position: 'relative', background: 'var(--color-navy)' }}>
                   <img
                     src={item.image_url}
                     alt={item.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}
                     className="gallery-thumb"
                   />
                   <span style={{
