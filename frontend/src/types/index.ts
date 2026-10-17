@@ -69,6 +69,8 @@ export interface QuoteRequest {
   shipyard_location?: string;
   service_needed?: string;
   message: string;
+  file_name?: string;
+  file_data?: string;
   created_at?: string;
   status?: string;
 }

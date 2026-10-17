@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { SiteSettings, ServiceItem, QuoteRequest } from '../types';
 import { submitQuote } from '../api';
-import { Phone, Mail, Shield, Anchor, CheckCircle } from 'lucide-react';
+import { Phone, Mail, Shield, Anchor, CheckCircle, FileText, UploadCloud, X } from 'lucide-react';
 
 interface ContactProps {
   settings: SiteSettings;
@@ -23,9 +23,25 @@ export const Contact: React.FC<ContactProps> = ({ settings, services }) => {
     message: '',
   });
 
+  const [attachedFile, setAttachedFile] = useState<{ name: string; size: string; dataUrl: string } | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+
+  const handleFileChange = (file: File) => {
+    if (file.size > 15 * 1024 * 1024) {
+      setError('File size exceeds 15MB limit. Please upload a smaller file or send via email.');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const dataUrl = e.target?.result as string;
+      const sizeStr = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
+      setAttachedFile({ name: file.name, size: sizeStr, dataUrl });
+      setError('');
+    };
+    reader.readAsDataURL(file);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -36,11 +52,18 @@ export const Contact: React.FC<ContactProps> = ({ settings, services }) => {
     setSubmitting(true);
     setError('');
 
-    const res = await submitQuote(formData);
+    const payload: QuoteRequest = {
+      ...formData,
+      file_name: attachedFile?.name,
+      file_data: attachedFile?.dataUrl,
+    };
+
+    const res = await submitQuote(payload);
     setSubmitting(false);
 
     if (res.success) {
       setSubmitted(true);
+      setAttachedFile(null);
     } else {
       setError(res.message || 'Submission failed. Please call our direct line.');
     }
@@ -199,12 +222,113 @@ export const Contact: React.FC<ContactProps> = ({ settings, services }) => {
                     <textarea
                       name="message"
                       required
-                      rows={5}
+                      rows={4}
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Specify bore diameters, flange sizes, access limitations, or docking schedule..."
                       style={{ width: '100%', padding: '0.8rem 1rem', border: '1px solid var(--color-border)', borderRadius: 2 }}
                     />
+                  </div>
+
+                  {/* Technical Blueprint & Inspection Report File Attachment */}
+                  <div>
+                    <label style={{ display: 'block', fontWeight: 600, fontSize: '0.85rem', marginBottom: 4, textTransform: 'uppercase' }}>
+                      Attach Blueprints / Bore Inspection Sheets <span style={{ textTransform: 'none', color: '#64748b', fontWeight: 400 }}>(Optional - PDF, DWG, PNG, JPG up to 15MB)</span>
+                    </label>
+
+                    {!attachedFile ? (
+                      <label
+                        style={{
+                          border: '2px dashed var(--color-border)',
+                          borderRadius: '4px',
+                          padding: '1.25rem',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '0.5rem',
+                          cursor: 'pointer',
+                          background: '#f8fafc',
+                          transition: 'all 0.2s ease',
+                        }}
+                        onDragOver={(e) => {
+                          e.preventDefault();
+                          e.currentTarget.style.borderColor = 'var(--color-steel-blue)';
+                          e.currentTarget.style.background = '#f0f9ff';
+                        }}
+                        onDragLeave={(e) => {
+                          e.preventDefault();
+                          e.currentTarget.style.borderColor = 'var(--color-border)';
+                          e.currentTarget.style.background = '#f8fafc';
+                        }}
+                        onDrop={(e) => {
+                          e.preventDefault();
+                          e.currentTarget.style.borderColor = 'var(--color-border)';
+                          e.currentTarget.style.background = '#f8fafc';
+                          if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                            handleFileChange(e.dataTransfer.files[0]);
+                          }
+                        }}
+                      >
+                        <input
+                          type="file"
+                          accept=".pdf,.dwg,.dxf,.png,.jpg,.jpeg,.doc,.docx,.xlsx"
+                          style={{ display: 'none' }}
+                          onChange={(e) => {
+                            if (e.target.files && e.target.files[0]) {
+                              handleFileChange(e.target.files[0]);
+                            }
+                          }}
+                        />
+                        <UploadCloud size={28} color="var(--color-steel-blue)" />
+                        <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--color-navy)' }}>
+                          Click to browse or drag & drop project drawings
+                        </span>
+                        <span style={{ fontSize: '0.78rem', color: '#64748b' }}>
+                          Upload CAD drawings, runout logs, or damaged component photos for immediate review
+                        </span>
+                      </label>
+                    ) : (
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          padding: '0.75rem 1rem',
+                          background: '#ecfdf5',
+                          border: '1px solid #a7f3d0',
+                          borderRadius: '4px',
+                        }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <FileText size={20} color="#059669" />
+                          <div>
+                            <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#065f46' }}>
+                              {attachedFile.name}
+                            </div>
+                            <div style={{ fontSize: '0.75rem', color: '#047857' }}>
+                              {attachedFile.size} • Attached to RFQ
+                            </div>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setAttachedFile(null)}
+                          style={{
+                            background: 'transparent',
+                            border: 'none',
+                            color: '#991b1b',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            padding: '4px',
+                          }}
+                          aria-label="Remove attached file"
+                        >
+                          <X size={18} />
+                        </button>
+                      </div>
+                    )}
                   </div>
 
                   {error && (
