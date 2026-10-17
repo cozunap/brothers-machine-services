@@ -6,42 +6,42 @@
    ========================================================================== */
 
 :root {
-  /* [80% Canvas] Oceanic Obsidian & Deep Armor Slate */
-  --obsidian-950: #040910;
-  --obsidian-900: #071320;
-  --obsidian-850: #0a1b2c;
-  --obsidian-800: #0e243a;
-  --obsidian-750: #14304c;
-  --obsidian-700: #1b3d60;
+  /* [Luxury Naval Canvas Mandate] Deep Navy & Clean Maritime Obsidian */
+  --obsidian-950: #081220;
+  --obsidian-900: #0d1f3c;
+  --obsidian-850: #12284b;
+  --obsidian-800: #17325c;
+  --obsidian-750: #1c3c6d;
+  --obsidian-700: #234880;
 
   /* Compatibility Mappings */
-  --color-navy-950: var(--obsidian-950);
-  --color-navy-900: var(--obsidian-900);
-  --color-navy-850: var(--obsidian-850);
-  --color-navy-800: var(--obsidian-800);
-  --color-navy-700: var(--obsidian-750);
-  --brand-navy-950: var(--obsidian-950);
-  --brand-navy-900: var(--obsidian-900);
-  --brand-navy-850: var(--obsidian-850);
+  --color-navy-950: #081220;
+  --color-navy-900: #0d1f3c;
+  --color-navy-850: #12284b;
+  --color-navy-800: #17325c;
+  --color-navy-700: #1c3c6d;
+  --brand-navy-950: #081220;
+  --brand-navy-900: #0d1f3c;
+  --brand-navy-850: #12284b;
 
-  /* [15% Precision Layer] Technical Marine Blue */
-  --tech-blue: #0e7dc2;
-  --tech-blue-hover: #1493e0;
-  --tech-blue-light: #38bdf8;
-  --tech-blue-glow: rgba(14, 125, 194, 0.28);
+  /* [15% Precision Layer] Curated Marine Gold & Azure Accents */
+  --tech-blue: #1470af;
+  --tech-blue-hover: #1b85ce;
+  --tech-blue-light: #60a5fa;
+  --tech-blue-glow: rgba(20, 112, 175, 0.25);
   --brand-blue: var(--tech-blue);
   --brand-blue-light: var(--tech-blue-light);
 
   /* [5% Punctual Accent] Tactical Wrench Beacon Red */
   --tactical-red: #d83a20;
-  --tactical-red-hover: #f04e33;
-  --tactical-red-glow: rgba(216, 58, 32, 0.38);
+  --tactical-red-hover: #ea4a30;
+  --tactical-red-glow: rgba(216, 58, 32, 0.35);
   --brand-coral: var(--tactical-red);
   --logo-coral: var(--tactical-red);
 
   /* Technical Hairlines & Blueprint Grid */
   --steel-50: #ffffff;
-  --steel-100: #f1f5f9;
+  --steel-100: #f8fafc;
   --steel-200: #e2e8f0;
   --steel-300: #cbd5e1;
   --steel-400: #94a3b8;
@@ -49,12 +49,12 @@
   --steel-600: #475569;
 
   /* Surfaces & Glassmorphism */
-  --glass-nav: rgba(4, 9, 16, 0.94);
-  --glass-surface: rgba(7, 19, 32, 0.76);
-  --glass-surface-hover: rgba(11, 28, 46, 0.92);
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-tech: rgba(14, 125, 194, 0.28);
-  --border-blue: rgba(14, 125, 194, 0.45);
+  --glass-nav: rgba(8, 18, 32, 0.95);
+  --glass-surface: rgba(13, 31, 60, 0.72);
+  --glass-surface-hover: rgba(18, 40, 75, 0.88);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-tech: rgba(184, 154, 90, 0.22);
+  --border-blue: rgba(20, 112, 175, 0.35);
 
   /* Curated Gold Accents (Mandate Standard) */
   --brass-300: #e5cf98;
@@ -103,13 +103,10 @@ body {
   font-family: var(--font-sans);
   line-height: 1.65;
   background-color: var(--obsidian-950);
-  /* Precision Naval Grid & Atmospheric Lighting */
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    radial-gradient(ellipse at 15% 15%, rgba(14, 125, 194, 0.09) 0%, transparent 50%),
-    radial-gradient(ellipse at 85% 75%, rgba(200, 169, 98, 0.06) 0%, transparent 60%);
-  background-size: 60px 60px, 60px 60px, auto, auto;
+  background: 
+    radial-gradient(circle at 50% 0%, rgba(20, 112, 175, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 85% 20%, rgba(184, 154, 90, 0.08) 0%, transparent 45%),
+    linear-gradient(180deg, #081220 0%, #0d1f3c 40%, #081220 100%);
   background-attachment: fixed;
   color: var(--steel-200);
   min-height: 100vh;
@@ -298,7 +295,7 @@ img {
 }
 
 /* ==========================================================================
-   NAVIGATION & HEADER (Bespoke Naval Bridge)
+   NAVIGATION & HEADER (Luxury Naval Bridge)
    ========================================================================== */
 .site-header {
   position: sticky;
@@ -306,62 +303,62 @@ img {
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: var(--glass-nav);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(8, 18, 32, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(184, 154, 90, 0.18);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   transition: var(--transition-smooth);
 }
 
 .site-header.scrolled {
-  background: rgba(3, 7, 12, 0.98);
-  border-bottom: 1px solid rgba(200, 169, 98, 0.25);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+  background: rgba(6, 14, 26, 0.98);
+  border-bottom: 1px solid rgba(184, 154, 90, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
-/* Top Technical Telemetry Strip */
+/* Top Maritime Telemetry Strip */
 .header-top-bar {
-  background: rgba(2, 5, 9, 0.96);
+  background: #050b14;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
+  font-family: var(--font-tech);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
   color: var(--steel-400);
-  padding-block: 0.5rem;
+  padding-block: 0.55rem;
 }
 
 .top-bar-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .top-bar-left,
 .top-bar-right {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  flex-wrap: wrap;
+  gap: 0.9rem;
 }
 
 .status-indicator {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  color: #38bdf8;
+  gap: 0.5rem;
+  color: var(--brass-400);
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
 }
 
 .status-pulse {
-  width: 7px;
-  height: 7px;
-  background: #38bdf8;
+  width: 6px;
+  height: 6px;
+  background: var(--brass-400);
   border-radius: 50%;
-  box-shadow: 0 0 10px #38bdf8;
+  box-shadow: 0 0 8px var(--brass-400);
   animation: pulse 2s infinite ease-in-out;
 }
 
@@ -375,17 +372,15 @@ img {
   font-weight: 500;
 }
 
-.station-tag-strong {
-  color: #ffffff;
-  font-weight: 600;
-}
-
 .header-top-bar .divider {
-  color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.15);
 }
 
 .phone-link {
   color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   transition: var(--transition-fast);
 }
 
@@ -395,6 +390,7 @@ img {
 
 .phone-link strong {
   color: var(--brass-400);
+  font-weight: 600;
 }
 
 /* Main Nav Bar */
@@ -402,12 +398,12 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 94px;
-  gap: 2.5rem;
+  height: 82px;
+  gap: 2rem;
 }
 
 .brand-wrapper {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   text-decoration: none;
   flex-shrink: 0;
@@ -415,29 +411,26 @@ img {
 }
 
 .brand-wrapper:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .brand-logo-frame {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px;
-  transition: var(--transition-fast);
 }
 
 .brand-logo-img {
-  height: 72px;
+  height: 64px;
   width: auto;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.65));
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.5));
   transition: filter 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .brand-wrapper:hover .brand-logo-img {
-  filter: drop-shadow(0 6px 18px rgba(14, 125, 194, 0.45));
+  filter: drop-shadow(0 4px 16px rgba(184, 154, 90, 0.35));
 }
 
 .main-nav {
@@ -452,19 +445,19 @@ img {
   display: flex;
   align-items: center;
   list-style: none;
-  gap: clamp(1.5rem, 2.2vw, 2.75rem);
+  gap: clamp(1.25rem, 2vw, 2.25rem);
   white-space: nowrap;
 }
 
 .nav-link {
   font-family: var(--font-tech);
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--steel-300);
   position: relative;
-  padding: 0.6rem 0;
+  padding: 0.5rem 0;
   white-space: nowrap;
   display: inline-block;
   transition: var(--transition-fast);
@@ -475,7 +468,7 @@ img {
 }
 
 .nav-link.active {
-  color: var(--brass-400);
+  color: var(--brass-300);
 }
 
 .nav-link.active::after {
@@ -485,8 +478,8 @@ img {
   left: 0;
   width: 100%;
   height: 2px;
-  background: var(--brass-500);
-  box-shadow: 0 0 12px var(--brass-glow);
+  background: linear-gradient(90deg, var(--brass-400), var(--brass-500));
+  box-shadow: 0 0 10px var(--brass-glow);
 }
 
 .nav-actions {
@@ -501,32 +494,32 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-  padding: 0.72rem 1.45rem;
+  padding: 0.65rem 1.4rem;
   font-family: var(--font-tech);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #ffffff;
-  background: linear-gradient(135deg, rgba(216, 58, 32, 0.92), rgba(168, 35, 14, 0.92));
+  background: linear-gradient(135deg, var(--brass-500) 0%, #8c7133 100%);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 2px;
-  box-shadow: 0 4px 18px rgba(216, 58, 32, 0.4);
+  box-shadow: 0 4px 16px rgba(184, 154, 90, 0.25);
   white-space: nowrap;
   transition: var(--transition-fast);
 }
 
 .nav-cta-btn:hover {
-  background: linear-gradient(135deg, #f04e33, var(--logo-coral));
+  background: linear-gradient(135deg, #c9ab67 0%, var(--brass-500) 100%);
   transform: translateY(-2px);
-  box-shadow: 0 8px 26px rgba(216, 58, 32, 0.6);
+  box-shadow: 0 6px 22px rgba(184, 154, 90, 0.45);
   border-color: #ffffff;
-  color: #ffffff;
+  color: #081220;
 }
 
 .cta-pulse-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   background: #ffffff;
   border-radius: 50%;
   box-shadow: 0 0 6px #ffffff;
@@ -778,9 +771,9 @@ img {
   position: absolute;
   inset: 0;
   background: 
-    linear-gradient(90deg, rgba(4, 8, 14, 0.97) 0%, rgba(4, 8, 14, 0.88) 55%, rgba(4, 8, 14, 0.72) 100%),
-    radial-gradient(circle at 75% 25%, rgba(200, 169, 98, 0.08) 0%, transparent 60%),
-    radial-gradient(circle at 25% 75%, rgba(14, 125, 194, 0.08) 0%, transparent 60%);
+    linear-gradient(90deg, rgba(8, 18, 32, 0.96) 0%, rgba(8, 18, 32, 0.88) 55%, rgba(13, 31, 60, 0.75) 100%),
+    radial-gradient(circle at 75% 25%, rgba(184, 154, 90, 0.1) 0%, transparent 55%),
+    radial-gradient(circle at 25% 75%, rgba(20, 112, 175, 0.1) 0%, transparent 60%);
   z-index: 1;
 }
 
@@ -791,8 +784,8 @@ img {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 0.32;
-  filter: contrast(1.2) brightness(0.85);
+  opacity: 0.28;
+  filter: contrast(1.15) brightness(0.9);
   z-index: 0;
 }
 
