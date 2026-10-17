@@ -17,7 +17,6 @@ export const Header: React.FC<HeaderProps> = ({ settings }) => {
     { name: 'Services', path: '/services' },
     { name: 'Shipyards', path: '/shipyards' },
     { name: 'Gallery', path: '/gallery' },
-    { name: 'Contact', path: '/contact' },
   ];
 
   return (
@@ -72,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({ settings }) => {
 
         {/* Header Action Button */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <Link to="/contact" className="btn btn-primary" style={{ padding: '0.65rem 1.45rem', fontSize: '0.9rem' }}>
+          <Link to="/contact" className="btn btn-primary" style={{ padding: '0.65rem 1.45rem', fontSize: '0.85rem', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
             Request a Quote
           </Link>
           <button
@@ -127,10 +126,10 @@ export const Header: React.FC<HeaderProps> = ({ settings }) => {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <a href={`tel:${settings.phone.replace(/[^0-9]/g, '')}`} className="btn btn-blue" style={{ width: '100%' }}>
+            <a href={`tel:${settings.phone.replace(/[^0-9]/g, '')}`} className="btn btn-blue" style={{ width: '100%', textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.85rem' }}>
               Call {settings.phone}
             </a>
-            <Link to="/contact" onClick={() => setMobileOpen(false)} className="btn btn-primary" style={{ width: '100%' }}>
+            <Link to="/contact" onClick={() => setMobileOpen(false)} className="btn btn-primary" style={{ width: '100%', textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.85rem' }}>
               Request a Quote
             </Link>
           </div>
