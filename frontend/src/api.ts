@@ -84,6 +84,10 @@ export const fallbackGallery: GalleryItem[] = [
   { id: 4, title: 'Caddell Deck Winch Overhaul', caption: 'Heavy marine winch disassembly and on-deck bearing boring at Caddell Drydock.', image_url: '/assets/Brothers-Machine-Services-Corp-Photo-5.webp', category: 'Drydock', sort_order: 4, visible: 1 },
   { id: 5, title: 'Shaft Alley Rigging Team', caption: 'Brothers Machine team coordinating propulsion shafting and bearing alignment under dock deadlines.', image_url: '/assets/Brothers-Machine-Services-Corp-Photo-10.webp', category: 'Drydock', sort_order: 5, visible: 1 },
   { id: 6, title: 'Heavy Propeller Lift', caption: 'Heavy 4-blade propeller rigging and bore taper preparation at shipyard slipway.', image_url: '/assets/Brothers-Machine-Services-Corp-Photo-14.webp', category: 'Drydock', sort_order: 6, visible: 1 },
+  { id: 7, title: 'Hydraulic Flange Bolt Tensioning', caption: 'Multi-cylinder calibrated hydraulic tensioning for uniform clamp load on main shaft flange.', image_url: '/assets/Brothers-Machine-Services-Corp-Photo-16.webp', category: 'Flange Facing', sort_order: 7, visible: 1 },
+  { id: 8, title: 'GMD Shipyard Stern Overhaul', caption: 'Commercial vessel in Drydock 1 at GMD Shipyard undergoing stern tube line boring.', image_url: '/assets/Brothers-Machine-Services-Corp-Photo-17.webp', category: 'Drydock', sort_order: 8, visible: 1 },
+  { id: 9, title: 'Safety-Wired Marine Fasteners', caption: 'High-spec marine safety wiring securing fasteners against heavy hull vibration.', image_url: '/assets/Brothers-Machine-Services-Corp-Photo-18.webp', category: 'Shop', sort_order: 9, visible: 1 },
+  { id: 10, title: 'Composite Stern Tube Bearing', caption: 'Water-lubricated Thordon composite bearing installed and line-checked in ship stern frame.', image_url: '/assets/Brothers-Machine-Services-Corp-Photo-21.webp', category: 'Line Boring', sort_order: 10, visible: 1 },
 ];
 
 export async function fetchSettings(): Promise<SiteSettings> {

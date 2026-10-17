@@ -9,11 +9,18 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [activeLightbox, setActiveLightbox] = useState<GalleryItem | null>(null);
 
-  const categories = ['All', 'Line Boring', 'Flange Facing', 'Milling', 'Drydock', 'Shop'];
+  // Extract only categories that actually exist in the gallery items
+  const availableCategories = React.useMemo(() => {
+    const cats = Array.from(new Set(gallery.map(item => item.category).filter(Boolean)));
+    return cats.length > 0 ? ['All', ...cats] : [];
+  }, [gallery]);
 
-  const filteredItems = activeCategory === 'All'
+  // If activeCategory is not in available categories, reset to 'All'
+  const currentCategory = availableCategories.includes(activeCategory) ? activeCategory : 'All';
+
+  const filteredItems = currentCategory === 'All'
     ? gallery
-    : gallery.filter(item => item.category.toLowerCase() === activeCategory.toLowerCase());
+    : gallery.filter(item => item.category.toLowerCase() === currentCategory.toLowerCase());
 
   return (
     <div>
@@ -36,32 +43,39 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
       {/* Filter Tabs */}
       <div className="section section-white">
         <div className="container">
-          <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '3rem' }}>
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                style={{
-                  padding: '0.55rem 1.25rem',
-                  borderRadius: 2,
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '0.95rem',
-                  textTransform: 'uppercase',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  border: activeCategory === cat ? '1px solid var(--color-steel-blue)' : '1px solid var(--color-border)',
-                  background: activeCategory === cat ? 'var(--color-steel-blue)' : '#ffffff',
-                  color: activeCategory === cat ? '#ffffff' : 'var(--color-navy)',
-                  transition: 'var(--transition)'
-                }}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+          {availableCategories.length > 1 && (
+            <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '3rem' }}>
+              {availableCategories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  style={{
+                    padding: '0.55rem 1.25rem',
+                    borderRadius: 2,
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: '0.95rem',
+                    textTransform: 'uppercase',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    border: currentCategory === cat ? '1px solid var(--color-steel-blue)' : '1px solid var(--color-border)',
+                    background: currentCategory === cat ? 'var(--color-steel-blue)' : '#ffffff',
+                    color: currentCategory === cat ? '#ffffff' : 'var(--color-navy)',
+                    transition: 'var(--transition)'
+                  }}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* Gallery Grid */}
-          <div className="grid-3">
+          {filteredItems.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '4rem 1rem', color: 'var(--color-steel-gray)' }}>
+              <p style={{ fontSize: '1.1rem' }}>No projects available in this category yet.</p>
+            </div>
+          ) : (
+            <div className="grid-3">
             {filteredItems.map((item) => (
               <div
                 key={item.id}
@@ -101,7 +115,8 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
                 </div>
               </div>
             ))}
-          </div>
+            </div>
+          )}
         </div>
       </div>
 
