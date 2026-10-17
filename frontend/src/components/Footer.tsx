@@ -96,6 +96,33 @@ export const Footer: React.FC<FooterProps> = ({ settings }) => {
                   {settings.insurance_line}
                 </div>
               </div>
+              <div style={{ marginTop: '0.5rem', paddingTop: '0.85rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                <a
+                  href="https://www.bbb.org/us/ny"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.55rem',
+                    background: 'rgba(255, 255, 255, 0.04)',
+                    border: '1px solid rgba(255, 255, 255, 0.12)',
+                    padding: '0.45rem 0.75rem',
+                    borderRadius: 2,
+                    textDecoration: 'none',
+                    transition: 'var(--transition)'
+                  }}
+                  className="bbb-badge-link"
+                >
+                  <span style={{ fontWeight: 900, fontFamily: 'var(--font-heading)', letterSpacing: '0.06em', color: '#ffffff', background: '#005a70', padding: '0.15rem 0.4rem', borderRadius: 2, fontSize: '0.75rem' }}>
+                    BBB
+                  </span>
+                  <div style={{ fontSize: '0.78rem', color: '#cbd5e1', lineHeight: 1.2 }}>
+                    <strong style={{ color: '#ffffff', display: 'block' }}>Better Business Bureau&reg;</strong>
+                    <span>Serving New York</span>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -115,8 +142,13 @@ export const Footer: React.FC<FooterProps> = ({ settings }) => {
           <div>
             &copy; {new Date().getFullYear()} Brothers Machine Services Corp. All Rights Reserved. Hands-on outside machining. Design by <a href="https://cozuna.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-steel-blue)', textDecoration: 'none', fontWeight: 500 }}>cozuna</a>.
           </div>
-          <div style={{ display: 'flex', gap: '1.5rem' }}>
+          <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <a href="https://www.bbb.org/us/ny" target="_blank" rel="noopener noreferrer" style={{ color: '#9ba8b7', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+              <span style={{ fontWeight: 800, color: 'var(--color-steel-blue)' }}>BBB</span> New York Verified
+            </a>
+            <span>•</span>
             <span>TWIC Compliant Field Crews</span>
+            <span>•</span>
             <Link to="/contact" style={{ color: 'var(--color-steel-blue)' }}>COI Issued Upon Request</Link>
           </div>
         </div>
