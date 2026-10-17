@@ -199,22 +199,28 @@
             <div>
               <h4 class="footer-title">Shipyard Stations</h4>
               <div class="footer-contact-item">
-                <span class="footer-contact-icon">⚓</span>
+                <span class="footer-contact-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
+                </span>
                 <div>
                   <strong style="color:#fff;">GMD Shipyard (Brooklyn Navy Yard)</strong>
-                  <div style="font-size:0.82rem; color:var(--color-steel-400);">Drydocks 1, 5 & 6 • On-Site Marine Machining</div>
+                  <div style="font-size:0.82rem; color:#94a3b8;">Drydocks 1, 5 & 6 • On-Site Marine Machining</div>
                 </div>
               </div>
               <div class="footer-contact-item">
-                <span class="footer-contact-icon">⚓</span>
+                <span class="footer-contact-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
+                </span>
                 <div>
                   <strong style="color:#fff;">Caddell Drydock (Staten Island)</strong>
-                  <div style="font-size:0.82rem; color:var(--color-steel-400);">Richmond Terrace • Drydock Outside Machining</div>
+                  <div style="font-size:0.82rem; color:#94a3b8;">Richmond Terrace • Drydock Outside Machining</div>
                 </div>
               </div>
               <div class="footer-contact-item">
-                <span class="footer-contact-icon">🛡️</span>
-                <div style="font-size:0.85rem; color:var(--brand-coral);">
+                <span class="footer-contact-icon" style="color:#38bdf8;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </span>
+                <div style="font-size:0.85rem; color:#cbd5e1;">
                   Fully Insured: Ship Repairer’s Legal Liability, Marine General Liability & Workers’ Comp.
                 </div>
               </div>
