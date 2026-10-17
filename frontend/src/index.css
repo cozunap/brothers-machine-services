@@ -458,111 +458,132 @@ img {
 }
 
 /* ========================================================
-   PREMIUM MICRO-ANIMATIONS & INTERACTION TOKENS
+   PREMIUM SILKY MICRO-ANIMATIONS & INTERACTION SUITE
    ======================================================== */
 
-/* Card Image Zoom on Card Hover */
+/* Card Silky Lift & Shadow Bloom */
 .card {
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-              border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.35s ease;
   will-change: transform, box-shadow;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(4, 23, 35, 0.12);
+  transform: translateY(-7px);
+  box-shadow: 0 20px 40px -8px rgba(4, 23, 35, 0.16), 0 0 0 1px rgba(20, 155, 234, 0.25);
   border-color: var(--color-steel-blue);
 }
 
+/* Luxurious Slow-Glide Image Zoom */
 .card img,
 .gallery-thumb {
-  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
   will-change: transform;
 }
 
 .card:hover img,
 .card:hover .gallery-thumb {
-  transform: scale(1.04);
+  transform: scale(1.06);
 }
 
-/* Premium Button Hover Polish */
+/* Silky Button Physics & Hover Elevation */
 .btn {
   position: relative;
   overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.25s ease, 
+              border-color 0.25s ease;
   will-change: transform, box-shadow;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(236, 81, 56, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px -2px rgba(236, 81, 56, 0.45);
 }
 
 .btn-primary:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(236, 81, 56, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(236, 81, 56, 0.35);
+  transition-duration: 0.15s;
 }
 
 .btn-secondary {
-  transition: var(--transition);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.25s ease, 
+              border-color 0.25s ease;
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.15);
   border-color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.12);
 }
 
 .btn-outline-dark {
-  transition: var(--transition);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.25s ease, 
+              border-color 0.25s ease,
+              color 0.25s ease;
 }
 
 .btn-outline-dark:hover {
   border-color: var(--color-steel-blue);
   color: var(--color-steel-blue);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(20, 155, 234, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px -2px rgba(20, 155, 234, 0.2);
 }
 
-/* Subtle Link Underline Slide Animation */
+/* Nav Link Smooth Underline Reveal & Glow */
+.nav-link {
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  transform-origin: left;
+}
+
+/* Smooth Link Slide Hover in Footer */
 .footer-grid a {
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-block;
 }
 
 .footer-grid a:hover {
   color: var(--color-steel-blue) !important;
-  transform: translateX(3px);
+  transform: translateX(5px);
 }
 
-/* Badge & Tag Hover */
-span[style*="borderRadius: 2"],
-span[style*="border-radius: 2px"] {
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-
-/* Page Entrance Animation */
+/* Page Entrance Animation: Smooth Ambient Glide */
 @keyframes premiumFadeIn {
-  from {
+  0% {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(14px);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
 main > * {
-  animation: premiumFadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: premiumFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Form Input Focus Glow */
+/* Form Input Silky Focus Glow */
+input, textarea, select {
+  transition: border-color 0.3s ease, box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 input:focus,
 textarea:focus,
 select:focus {
   outline: none;
   border-color: var(--color-steel-blue) !important;
-  box-shadow: 0 0 0 3px rgba(20, 155, 234, 0.2) !important;
+  box-shadow: 0 0 0 4px rgba(20, 155, 234, 0.22) !important;
 }
