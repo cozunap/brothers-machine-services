@@ -1,0 +1,17 @@
+{
+  "name": "brothers-machine-services-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:worker": "wrangler dev worker/index.ts --port 8787",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev": "npm run dev:frontend",
+    "build:frontend": "cd frontend && npm run build",
+    "build:worker": "wrangler deploy --dry-run worker/index.ts",
+    "d1:migrate:local": "wrangler d1 execute brothers-machine-db --local --file=./migrations/0001_init.sql",
+    "d1:migrate:remote": "wrangler d1 execute brothers-machine-db --remote --file=./migrations/0001_init.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^4.151.1"
+  }
+}

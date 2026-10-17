@@ -1,0 +1,59 @@
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { SiteSettings, ServiceItem, GalleryItem } from './types';
+import { fetchSettings, fetchServices, fetchGallery, fallbackSettings } from './api';
+
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import { ScrollToTop } from './components/ScrollToTop';
+
+import { Home } from './pages/Home';
+import { About } from './pages/About';
+import { Services } from './pages/Services';
+import { Shipyards } from './pages/Shipyards';
+import { Gallery } from './pages/Gallery';
+import { Contact } from './pages/Contact';
+import { AdminDashboard } from './admin/AdminDashboard';
+
+export const App: React.FC = () => {
+  const [settings, setSettings] = useState<SiteSettings>(fallbackSettings);
+  const [services, setServices] = useState<ServiceItem[]>([]);
+  const [gallery, setGallery] = useState<GalleryItem[]>([]);
+
+  useEffect(() => {
+    fetchSettings().then(setSettings);
+    fetchServices().then(setServices);
+    fetchGallery().then(setGallery);
+  }, []);
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Admin Route - Shop Office */}
+        <Route path="/admin" element={<AdminDashboard />} />
+
+        {/* Public Website Routes */}
+        <Route
+          path="/*"
+          element={
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+              <Header settings={settings} />
+              <main style={{ flex: 1 }}>
+                <Routes>
+                  <Route path="/" element={<Home settings={settings} services={services} gallery={gallery} />} />
+                  <Route path="/about" element={<About settings={settings} />} />
+                  <Route path="/services" element={<Services services={services} />} />
+                  <Route path="/shipyards" element={<Shipyards settings={settings} />} />
+                  <Route path="/gallery" element={<Gallery gallery={gallery} />} />
+                  <Route path="/contact" element={<Contact settings={settings} services={services} />} />
+                </Routes>
+              </main>
+              <Footer settings={settings} />
+              <ScrollToTop />
+            </div>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+};

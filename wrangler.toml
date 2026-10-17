@@ -1,0 +1,16 @@
+name = "brothers-machine-services-worker"
+main = "worker/index.ts"
+compatibility_date = "2024-04-01"
+
+[vars]
+SITE_URL = "https://brothers-machine-services.pages.dev"
+ADMIN_SETUP_KEY = "brothers-marine-setup-2026"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "brothers-machine-db"
+database_id = "brothers-machine-db-local"
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "brothers-machine-images"
