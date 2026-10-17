@@ -113,7 +113,7 @@ export const Footer: React.FC<FooterProps> = ({ settings }) => {
           color: '#64748b'
         }}>
           <div>
-            &copy; {new Date().getFullYear()} Brothers Machine Services Corp. All Rights Reserved. Hands-on outside machining.
+            &copy; {new Date().getFullYear()} Brothers Machine Services Corp. All Rights Reserved. Hands-on outside machining. Design by <a href="https://cozuna.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-steel-blue)', textDecoration: 'none', fontWeight: 500 }}>cozuna</a>.
           </div>
           <div style={{ display: 'flex', gap: '1.5rem' }}>
             <span>TWIC Compliant Field Crews</span>
