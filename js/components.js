@@ -44,14 +44,9 @@
       <!-- Main Sticky Navigation Bar -->
       <header class="site-header" id="main-header">
         <div class="container nav-container">
-          <a href="index.html" class="brand-wrapper" aria-label="Brothers Machine Services Corp">
+          <a href="index.html" class="brand-wrapper" aria-label="Brothers Machine Services Corp - Home">
             <div class="brand-logo-frame">
-              <img src="${logoSrc}" alt="Brothers Machine Services Corp Logo" class="brand-logo-img">
-            </div>
-            <div class="brand-divider"></div>
-            <div class="brand-text">
-              <span class="brand-title">BROTHERS MACHINE</span>
-              <span class="brand-subtitle">OUTSIDE MARINE MACHINING</span>
+              <img src="${logoSrc}" alt="Brothers Machine Services Corp" class="brand-logo-img">
             </div>
           </a>
 
