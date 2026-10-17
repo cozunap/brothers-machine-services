@@ -1,0 +1,1382 @@
+/* ==========================================================================
+   BROTHERS MACHINE SERVICES CORP - 80 / 15 / 5 MASTER DESIGN SYSTEM
+   - 80% Oceanic Obsidian & Deep Naval Slate Canvas
+   - 15% Precision Technical Blue (Navigation, Borders, Micrometers, Badges)
+   - 5%  Punctual Tactical Beacon Red (Emergency Dispatch, Hotlines, Live Pulse)
+   ========================================================================== */
+
+:root {
+  /* [80% Canvas] Oceanic Obsidian & Deep Armor Slate */
+  --obsidian-950: #040910;
+  --obsidian-900: #071320;
+  --obsidian-850: #0a1b2c;
+  --obsidian-800: #0e243a;
+  --obsidian-750: #14304c;
+  --obsidian-700: #1b3d60;
+
+  /* Compatibility Mappings */
+  --color-navy-950: var(--obsidian-950);
+  --color-navy-900: var(--obsidian-900);
+  --color-navy-850: var(--obsidian-850);
+  --color-navy-800: var(--obsidian-800);
+  --color-navy-700: var(--obsidian-750);
+  --brand-navy-950: var(--obsidian-950);
+  --brand-navy-900: var(--obsidian-900);
+  --brand-navy-850: var(--obsidian-850);
+
+  /* [15% Precision Layer] Technical Marine Blue */
+  --tech-blue: #0e7dc2;
+  --tech-blue-hover: #1493e0;
+  --tech-blue-light: #38bdf8;
+  --tech-blue-glow: rgba(14, 125, 194, 0.28);
+  --brand-blue: var(--tech-blue);
+  --brand-blue-light: var(--tech-blue-light);
+
+  /* [5% Punctual Accent] Tactical Wrench Beacon Red */
+  --tactical-red: #d83a20;
+  --tactical-red-hover: #f04e33;
+  --tactical-red-glow: rgba(216, 58, 32, 0.38);
+  --brand-coral: var(--tactical-red);
+  --logo-coral: var(--tactical-red);
+
+  /* Technical Hairlines & Blueprint Grid */
+  --steel-50: #ffffff;
+  --steel-100: #f1f5f9;
+  --steel-200: #e2e8f0;
+  --steel-300: #cbd5e1;
+  --steel-400: #94a3b8;
+  --steel-500: #64748b;
+  --steel-600: #475569;
+
+  /* Surfaces & Glassmorphism */
+  --glass-nav: rgba(4, 9, 16, 0.94);
+  --glass-surface: rgba(7, 19, 32, 0.76);
+  --glass-surface-hover: rgba(11, 28, 46, 0.92);
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-tech: rgba(14, 125, 194, 0.28);
+  --border-blue: rgba(14, 125, 194, 0.45);
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-heading: 'Cinzel', 'Playfair Display', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  --font-tech: 'Outfit', -apple-system, sans-serif;
+
+  /* Elevations */
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.8);
+  --shadow-brass: 0 12px 35px rgba(200, 169, 98, 0.16);
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Spacing */
+  --section-pad: clamp(4.5rem, 8vw, 8rem);
+  --container-max: 1300px;
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--obsidian-950);
+  color: var(--steel-200);
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.65;
+  background-color: var(--obsidian-950);
+  /* Precision Naval Grid & Atmospheric Lighting */
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    radial-gradient(ellipse at 15% 15%, rgba(14, 125, 194, 0.09) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 75%, rgba(200, 169, 98, 0.06) 0%, transparent 60%);
+  background-size: 60px 60px, 60px 60px, auto, auto;
+  background-attachment: fixed;
+  color: var(--steel-200);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 5.8vw, 4.4rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+}
+
+p {
+  color: var(--steel-300);
+  font-size: 1.05rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 3.5vw, 2.5rem);
+}
+
+.section {
+  padding-block: var(--section-pad);
+  position: relative;
+}
+
+/* Naval Coordinates & Blueprint Badges (15% Technical Blue) */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-tech);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--tech-blue-light);
+  padding: 0.4rem 1.15rem;
+  background: rgba(14, 125, 194, 0.08);
+  border: 1px solid rgba(14, 125, 194, 0.32);
+  border-radius: 2px;
+  margin-bottom: 1.35rem;
+  backdrop-filter: blur(8px);
+}
+
+.eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--tech-blue-light);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--tech-blue-light);
+}
+
+.section-header {
+  text-align: center;
+  max-width: 820px;
+  margin-inline: auto;
+  margin-bottom: clamp(3rem, 5.5vw, 5rem);
+}
+
+.section-header.text-left {
+  text-align: left;
+  margin-inline: 0;
+}
+
+.section-header h2 {
+  margin-bottom: 1.15rem;
+}
+
+.section-header p {
+  font-size: 1.15rem;
+  color: var(--steel-400);
+}
+
+/* Precision Naval Gradient Headlines */
+.hero-gold-gradient {
+  background: linear-gradient(135deg, #ffffff 30%, #a5f3fc 70%, var(--tech-blue-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.hero-steel-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, var(--steel-300) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Precision Action Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.95rem 2.2rem;
+  font-family: var(--font-tech);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: var(--transition-fast);
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Primary Button: Precision Technical Cobalt */
+.btn-primary {
+  background: linear-gradient(135deg, var(--tech-blue) 0%, #09598c 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 20px rgba(14, 125, 194, 0.35);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #1fa5fb 0%, var(--tech-blue) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(14, 125, 194, 0.55);
+}
+
+/* Secondary Button: Armor Plate Glass with Blue Accent */
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+  background: rgba(14, 125, 194, 0.12);
+  border-color: var(--tech-blue-light);
+  color: var(--tech-blue-light);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(14, 125, 194, 0.25);
+}
+
+/* Accent Button: Tactical Wrench Beacon Red (5% Punctual) */
+.btn-accent {
+  background: linear-gradient(135deg, var(--tactical-red) 0%, #a8230e 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 22px rgba(216, 58, 32, 0.45);
+}
+
+.btn-accent:hover {
+  background: linear-gradient(135deg, #f04e33 0%, var(--tactical-red) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(216, 58, 32, 0.65);
+}
+
+.btn-accent:hover {
+  background: linear-gradient(135deg, #f04e33 0%, var(--logo-coral) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(216, 58, 32, 0.65);
+}
+
+/* ==========================================================================
+   NAVIGATION & HEADER (Bespoke Naval Bridge)
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--glass-nav);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: var(--transition-smooth);
+}
+
+.site-header.scrolled {
+  background: rgba(3, 7, 12, 0.98);
+  border-bottom: 1px solid rgba(200, 169, 98, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+}
+
+/* Top Technical Telemetry Strip */
+.header-top-bar {
+  background: rgba(2, 5, 9, 0.96);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--steel-400);
+  padding-block: 0.5rem;
+}
+
+.top-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.top-bar-left,
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #38bdf8;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.status-pulse {
+  width: 7px;
+  height: 7px;
+  background: #38bdf8;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #38bdf8;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.85); }
+}
+
+.station-tag {
+  color: var(--steel-300);
+  font-weight: 500;
+}
+
+.station-tag-strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.header-top-bar .divider {
+  color: rgba(255, 255, 255, 0.18);
+}
+
+.phone-link {
+  color: #ffffff;
+  transition: var(--transition-fast);
+}
+
+.phone-link:hover {
+  color: var(--brass-300);
+}
+
+.phone-link strong {
+  color: var(--brass-400);
+}
+
+/* Main Nav Bar */
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 88px;
+  gap: 2rem;
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-logo-frame {
+  position: relative;
+  padding: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(200, 169, 98, 0.25);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: var(--transition-fast);
+}
+
+.brand-wrapper:hover .brand-logo-frame {
+  border-color: var(--brass-400);
+  box-shadow: 0 4px 20px rgba(200, 169, 98, 0.35);
+}
+
+.brand-logo-img {
+  height: 62px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-divider {
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(180deg, rgba(200, 169, 98, 0.5), rgba(255, 255, 255, 0.05));
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  line-height: 1.15;
+}
+
+.brand-subtitle {
+  font-family: var(--font-tech);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass-400);
+  line-height: 1.25;
+  margin-top: 2px;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2.5rem;
+  flex: 1;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: clamp(1.25rem, 2vw, 2.25rem);
+  white-space: nowrap;
+}
+
+.nav-link {
+  font-family: var(--font-tech);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--steel-300);
+  position: relative;
+  padding: 0.6rem 0.2rem;
+  white-space: nowrap;
+  display: inline-block;
+  transition: var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+.nav-link.active {
+  color: var(--brass-300);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--brass-400);
+  box-shadow: 0 0 10px var(--brass-500);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* Precision Marine CTA Button */
+.nav-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.72rem 1.45rem;
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(216, 58, 32, 0.92), rgba(168, 35, 14, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  box-shadow: 0 4px 18px rgba(216, 58, 32, 0.4);
+  white-space: nowrap;
+  transition: var(--transition-fast);
+}
+
+.nav-cta-btn:hover {
+  background: linear-gradient(135deg, #f04e33, var(--logo-coral));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(216, 58, 32, 0.6);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.cta-pulse-dot {
+  width: 7px;
+  height: 7px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #ffffff;
+  animation: pulse 1.6s infinite;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #ffffff;
+}
+
+.hamburger-line {
+  display: block;
+  width: 26px;
+  height: 2px;
+  margin: 5px 0;
+  background-color: #ffffff;
+  transition: var(--transition-fast);
+}
+
+/* Mobile Drawer */
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: min(85vw, 380px);
+  height: 100vh;
+  background: rgba(4, 8, 14, 0.98);
+  backdrop-filter: blur(24px);
+  z-index: 1100;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-left: 1px solid var(--border-tech);
+  box-shadow: -15px 0 40px rgba(0, 0, 0, 0.85);
+}
+
+.mobile-nav-drawer.open {
+  right: 0;
+}
+
+.mobile-nav-drawer .close-btn {
+  align-self: flex-end;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.mobile-nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.mobile-nav-links a {
+  font-family: var(--font-tech);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--steel-200);
+  display: block;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.mobile-nav-links a.active {
+  color: var(--brass-400);
+}
+
+.mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 1050;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   CARDS & HOVER EFFECTS (Mandate Standards)
+   ========================================================================== */
+.card {
+  background: var(--glass-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: clamp(1.75rem, 3.5vw, 2.5rem);
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-sm);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md), 0 0 25px rgba(200, 169, 98, 0.08);
+  border-color: var(--border-tech);
+}
+
+.card-brand-border:hover {
+  border-color: var(--brass-500);
+  box-shadow: var(--shadow-md), 0 0 25px var(--brass-glow);
+}
+
+/* Photo Display Card with Monolithic Frame */
+.photo-card {
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--obsidian-900);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-sm);
+}
+
+.photo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(0, 0, 0, 0.8);
+  border-color: var(--brass-500);
+}
+
+.photo-card .photo-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.photo-card:hover img {
+  transform: scale(1.05);
+}
+
+.photo-card .photo-caption {
+  padding: 1.35rem 1.6rem;
+  background: var(--obsidian-850);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.photo-card .photo-title {
+  font-family: var(--font-tech);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.02em;
+}
+
+.photo-card .photo-desc {
+  font-size: 0.9rem;
+  color: var(--steel-400);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   TRUST & CREDENTIAL STRIP
+   ========================================================================== */
+.trust-badges-bar {
+  background: linear-gradient(180deg, rgba(8, 16, 26, 0.98), rgba(4, 8, 14, 0.99));
+  border-block: 1px solid var(--border-tech);
+  padding-block: 2.25rem;
+  margin-top: -1px;
+}
+
+.trust-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.75rem;
+  align-items: center;
+}
+
+.trust-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  padding: 0.5rem 0.85rem;
+}
+
+.trust-badge-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  background: rgba(200, 169, 98, 0.08);
+  border: 1px solid var(--border-tech);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brass-400);
+  flex-shrink: 0;
+  font-size: 1.35rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.trust-badge-title {
+  font-family: var(--font-tech);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.2rem;
+}
+
+.trust-badge-sub {
+  font-size: 0.85rem;
+  color: var(--steel-400);
+}
+
+/* ==========================================================================
+   HERO SECTIONS
+   ========================================================================== */
+.hero {
+  position: relative;
+  min-height: calc(100vh - 124px);
+  display: flex;
+  align-items: center;
+  padding-block: clamp(5rem, 9vw, 8rem);
+  background-color: var(--obsidian-950);
+  overflow: hidden;
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(90deg, rgba(4, 8, 14, 0.97) 0%, rgba(4, 8, 14, 0.88) 55%, rgba(4, 8, 14, 0.72) 100%),
+    radial-gradient(circle at 75% 25%, rgba(200, 169, 98, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 25% 75%, rgba(14, 125, 194, 0.08) 0%, transparent 60%);
+  z-index: 1;
+}
+
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.32;
+  filter: contrast(1.2) brightness(0.85);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
+}
+
+.hero-title {
+  margin-bottom: 1.75rem;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85);
+}
+
+.hero-lead {
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+  line-height: 1.65;
+  color: var(--steel-200);
+  margin-bottom: 2.75rem;
+  max-width: 760px;
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.hero-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2.25rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-stat-num {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 3.8vw, 3rem);
+  font-weight: 700;
+  color: var(--brass-400);
+  line-height: 1;
+  margin-bottom: 0.45rem;
+}
+
+.hero-stat-label {
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--steel-400);
+}
+
+/* Page Sub-Hero Banner */
+.page-hero {
+  position: relative;
+  padding-block: clamp(5rem, 8vw, 7rem);
+  background-color: var(--obsidian-900);
+  border-bottom: 1px solid var(--border-tech);
+  overflow: hidden;
+}
+
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(4, 8, 14, 0.9) 0%, rgba(4, 8, 14, 0.98) 100%);
+  z-index: 1;
+}
+
+.page-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+  z-index: 0;
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+}
+
+/* ==========================================================================
+   GRID LAYOUTS & COMPONENT SECTIONS
+   ========================================================================== */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 2.25rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 3rem;
+  align-items: center;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.75rem;
+}
+
+/* Shipyard Monolithic Cards */
+.shipyard-card {
+  background: linear-gradient(180deg, rgba(10, 20, 32, 0.9), rgba(5, 10, 16, 0.98));
+  border: 1px solid var(--border-tech);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-sm);
+}
+
+.shipyard-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg), 0 0 30px var(--brass-glow);
+  border-color: var(--brass-500);
+}
+
+.shipyard-card-media {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.shipyard-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shipyard-card:hover .shipyard-card-media img {
+  transform: scale(1.06);
+}
+
+.shipyard-tag {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  background: rgba(4, 8, 14, 0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--brass-400);
+  color: var(--brass-300);
+  font-family: var(--font-tech);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.4rem 0.9rem;
+  border-radius: 2px;
+}
+
+.shipyard-card-body {
+  padding: 2.25rem;
+}
+
+.shipyard-card-body h3 {
+  margin-bottom: 0.85rem;
+  color: #ffffff;
+}
+
+.shipyard-badge-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.shipyard-badge {
+  font-family: var(--font-tech);
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--steel-300);
+  padding: 0.35rem 0.75rem;
+  border-radius: 2px;
+}
+
+/* Outside Machining Core Callout */
+.machining-callout {
+  background: linear-gradient(135deg, rgba(12, 24, 38, 0.92) 0%, rgba(5, 11, 18, 0.98) 100%);
+  border: 1px solid var(--border-tech);
+  border-radius: 4px;
+  padding: clamp(2.5rem, 5vw, 4.5rem);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.machining-callout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--brass-400), var(--logo-coral));
+}
+
+/* History & Heritage Timeline */
+.timeline {
+  position: relative;
+  padding-left: 2.25rem;
+  border-left: 2px solid var(--border-tech);
+  margin-block: 2.5rem;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 0.35rem;
+  left: calc(-2.25rem - 7px);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--brass-500);
+  border: 3px solid var(--obsidian-950);
+  box-shadow: 0 0 12px var(--brass-500);
+}
+
+.timeline-year {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--brass-400);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.4rem;
+}
+
+.timeline-title {
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin-bottom: 0.6rem;
+}
+
+/* Insurance Coverage Box */
+.insurance-box {
+  background: rgba(10, 20, 32, 0.75);
+  border: 1px solid var(--border-tech);
+  border-radius: 4px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.insurance-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin-top: 1.5rem;
+}
+
+.insurance-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  color: var(--steel-200);
+}
+
+.insurance-list-icon {
+  color: var(--brass-400);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+/* Contact & Quote Form */
+.quote-form-wrap {
+  background: var(--glass-surface);
+  border: 1px solid var(--border-tech);
+  border-radius: 4px;
+  padding: clamp(2rem, 4.5vw, 3.5rem);
+  box-shadow: var(--shadow-lg);
+}
+
+.form-group {
+  margin-bottom: 1.6rem;
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-tech);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--steel-200);
+  margin-bottom: 0.6rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.95rem 1.25rem;
+  background: rgba(4, 8, 14, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  transition: var(--transition-fast);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--brass-400);
+  box-shadow: 0 0 15px rgba(200, 169, 98, 0.3);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ==========================================================================
+   FOOTER (Shared Component)
+   ========================================================================== */
+.site-footer {
+  background: #020509;
+  border-top: 1px solid var(--border-tech);
+  padding-top: clamp(4rem, 7vw, 6rem);
+  padding-bottom: 2.5rem;
+  color: var(--steel-400);
+  position: relative;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.4fr;
+  gap: 3.5rem;
+  margin-bottom: 4rem;
+}
+
+.footer-brand p {
+  margin-top: 1.35rem;
+  max-width: 400px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.footer-title {
+  font-family: var(--font-tech);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.6rem;
+}
+
+.footer-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 32px;
+  height: 2px;
+  background: var(--brass-500);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.footer-links a {
+  font-size: 0.94rem;
+  color: var(--steel-400);
+  transition: var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--brass-300);
+  padding-left: 5px;
+}
+
+.footer-contact-item {
+  display: flex;
+  gap: 0.85rem;
+  margin-bottom: 1.15rem;
+  font-size: 0.94rem;
+}
+
+.footer-contact-icon {
+  color: var(--brass-400);
+  flex-shrink: 0;
+}
+
+.footer-bottom {
+  padding-top: 2.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: 0.88rem;
+}
+
+/* ==========================================================================
+   GALLERY MODAL / LIGHTBOX
+   ========================================================================== */
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 5, 9, 0.96);
+  backdrop-filter: blur(12px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.lightbox-modal.active {
+  display: flex;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 960px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  border-radius: 2px;
+  border: 1px solid var(--brass-500);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), 0 0 40px var(--brass-glow);
+}
+
+.lightbox-caption {
+  margin-top: 1.25rem;
+  text-align: center;
+  color: #ffffff;
+  font-family: var(--font-tech);
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -48px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 2.4rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.lightbox-close:hover {
+  color: var(--brass-300);
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 1150px) {
+  .nav-links {
+    gap: 1.25rem;
+  }
+  .nav-link {
+    font-size: 0.88rem;
+  }
+  .brand-title {
+    font-size: 0.92rem;
+  }
+  .brand-subtitle {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .main-nav .nav-links {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .header-top-bar .top-bar-left .divider,
+  .header-top-bar .top-bar-left .station-tag:last-child {
+    display: none;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-top-bar {
+    display: none;
+  }
+
+  .brand-divider,
+  .brand-text {
+    display: none;
+  }
+
+  .nav-container {
+    height: 74px;
+  }
+
+  .brand-logo-img {
+    height: 52px;
+  }
+
+  .hero-stats-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-stats-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+}
