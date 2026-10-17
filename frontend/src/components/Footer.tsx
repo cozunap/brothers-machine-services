@@ -9,7 +9,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ settings }) => {
   return (
-    <footer className="section-dark" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingBottom: '2.5rem' }}>
+    <footer className="site-footer" style={{ background: 'var(--color-navy)', color: '#ffffff', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '50px', paddingBottom: '2.5rem' }}>
       <div className="container">
         <div style={{
           display: 'grid',
