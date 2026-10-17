@@ -241,9 +241,43 @@
     `;
   }
 
+  // Inject Scroll-to-Top Button
+  function renderScrollToTop() {
+    let btn = document.getElementById('scroll-to-top');
+    if (!btn) {
+      btn = document.createElement('button');
+      btn.id = 'scroll-to-top';
+      btn.className = 'scroll-to-top';
+      btn.setAttribute('aria-label', 'Scroll back to top');
+      btn.innerHTML = `
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      `;
+      document.body.appendChild(btn);
+
+      btn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    // Toggle button visibility on scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    }, { passive: true });
+  }
+
   // Initialize
   document.addEventListener('DOMContentLoaded', () => {
     renderHeader();
     renderFooter();
+    renderScrollToTop();
   });
 })();

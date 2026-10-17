@@ -305,24 +305,28 @@ img {
 }
 
 /* ==========================================================================
-   NAVIGATION & HEADER (Maersk Executive Corporate Header)
+   NAVIGATION & HEADER (Maersk Executive Corporate Sticky Header)
    ========================================================================== */
-.site-header {
+#header-placeholder {
   position: sticky;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
+}
+
+.site-header {
+  width: 100%;
   background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
-  transition: var(--transition-fast);
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
 }
 
 .site-header.scrolled {
   background: #ffffff;
   border-bottom: 1px solid #cbd5e1;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.1);
 }
 
 /* Top Maritime Corporate Bar */
@@ -1362,3 +1366,59 @@ img {
     width: 100%;
   }
 }
+
+/* ==========================================================================
+   SCROLL BACK TO TOP BUTTON
+   ========================================================================== */
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 4px;
+  background: var(--corporate-navy);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px rgba(11, 25, 44, 0.25);
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  background: var(--corporate-blue);
+  border-color: var(--corporate-blue);
+  box-shadow: 0 6px 18px rgba(0, 91, 148, 0.35);
+  transform: translateY(-3px);
+}
+
+.scroll-to-top svg {
+  transition: transform 0.2s ease;
+}
+
+.scroll-to-top:hover svg {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .scroll-to-top {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 42px;
+    height: 42px;
+  }
+}
+
