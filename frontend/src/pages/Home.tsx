@@ -326,7 +326,7 @@ export const Home: React.FC<HomeProps> = ({ settings, services, gallery }) => {
       </section>
 
       {/* 8. CTA Band (Safety orange button) */}
-      <section className="section-dark" style={{ background: 'var(--color-navy)', borderTop: '1px solid rgba(255,255,255,0.08)', paddingBlock: 'clamp(5rem, 8vw, 7.5rem)' }}>
+      <section className="section-dark" style={{ background: 'var(--color-navy)', borderTop: '1px solid rgba(255,255,255,0.08)', paddingBlock: '50px' }}>
         <div className="container" style={{ textAlign: 'center', maxWidth: 840 }}>
           <div className="eyebrow" style={{ marginInline: 'auto' }}>
             <span className="eyebrow-dot"></span>
