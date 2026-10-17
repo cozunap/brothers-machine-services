@@ -288,6 +288,118 @@ export const Home: React.FC<HomeProps> = ({ settings, services, gallery }) => {
         </div>
       </section>
 
+      {/* 5B. Emergency Turnaround Case Logs (Proof of Execution in Field) */}
+      <section className="section section-white" style={{ background: '#ffffff', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
+        <div className="container">
+          <div className="section-header">
+            <div className="eyebrow">
+              <span className="eyebrow-dot"></span>
+              <span>Documented Field Turnarounds</span>
+            </div>
+            <h2>Emergency Turnaround Logs</h2>
+            <p>Real-world outside machining operations executed under critical docking deadlines.</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+            {/* Case 01 */}
+            <div className="card" style={{ borderTop: '4px solid var(--color-steel-blue)', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--color-steel-blue)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  CASE LOG 01 • LINE BORING
+                </span>
+                <span style={{ fontSize: '0.75rem', background: '#e0f2fe', color: '#0369a1', padding: '2px 8px', borderRadius: 2, fontWeight: 700 }}>
+                  36 HR TURNAROUND
+                </span>
+              </div>
+              <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', lineHeight: 1.3 }}>
+                38-Foot Harbor Tug Stern Tube Re-Bore
+              </h3>
+              <div style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600, marginBottom: '1rem' }}>
+                Location: Caddell Drydock Dock #4 • Staten Island, NY
+              </div>
+              <p style={{ fontSize: '0.92rem', color: 'var(--color-text-dark)', marginBottom: '1.25rem', lineHeight: 1.6 }}>
+                <strong>The Challenge:</strong> Severe scoring on forward and aft cutless bearing carriers caused by salt-slurry ingress, threatening a 3-day drydock overstay.
+              </p>
+              <div style={{ background: '#f8fafc', padding: '0.85rem 1rem', borderRadius: 2, marginBottom: '1.5rem', borderLeft: '3px solid var(--color-steel-blue)' }}>
+                <div style={{ fontSize: '0.82rem', color: 'var(--color-navy)', fontWeight: 700 }}>
+                  EXECUTED TOLERANCE:
+                </div>
+                <div style={{ fontSize: '0.84rem', color: '#475569' }}>
+                  Single-setup continuous optical alignment over 38 ft; restored concentricity within <strong>0.0004" TIR</strong> for ABS surveyor approval.
+                </div>
+              </div>
+              <Link to="/contact?service=Line%20Boring" className="btn btn-outline-dark" style={{ marginTop: 'auto', fontSize: '0.85rem', padding: '0.65rem 1rem', textAlign: 'center' }}>
+                Mobilize Similar Operation &rarr;
+              </Link>
+            </div>
+
+            {/* Case 02 */}
+            <div className="card" style={{ borderTop: '4px solid var(--color-orange)', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--color-orange)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  CASE LOG 02 • FLANGE FACING
+                </span>
+                <span style={{ fontSize: '0.75rem', background: '#ffedd5', color: '#c2410c', padding: '2px 8px', borderRadius: 2, fontWeight: 700 }}>
+                  24 HR DISPATCH
+                </span>
+              </div>
+              <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', lineHeight: 1.3 }}>
+                72" Main Steam Valve Flange In-Situ Facing
+              </h3>
+              <div style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600, marginBottom: '1rem' }}>
+                Location: GMD Brooklyn Navy Yard (Graving Dock 6)
+              </div>
+              <p style={{ fontSize: '0.92rem', color: 'var(--color-text-dark)', marginBottom: '1.25rem', lineHeight: 1.6 }}>
+                <strong>The Challenge:</strong> High-pressure boiler steam valve flange suffered erosion wire-drawing across gasket face. Dismantling the 14-ton body was physically impossible.
+              </p>
+              <div style={{ background: '#f8fafc', padding: '0.85rem 1rem', borderRadius: 2, marginBottom: '1.5rem', borderLeft: '3px solid var(--color-orange)' }}>
+                <div style={{ fontSize: '0.82rem', color: 'var(--color-navy)', fontWeight: 700 }}>
+                  EXECUTED TOLERANCE:
+                </div>
+                <div style={{ fontSize: '0.84rem', color: '#475569' }}>
+                  ID-mounted portable facer cut fresh ASME B16.5 phonographic spiral finish (125–250 Ra) with <strong>100% hydro-test signoff</strong>.
+                </div>
+              </div>
+              <Link to="/contact?service=Flange%20Facing" className="btn btn-outline-dark" style={{ marginTop: 'auto', fontSize: '0.85rem', padding: '0.65rem 1rem', textAlign: 'center' }}>
+                Mobilize Similar Operation &rarr;
+              </Link>
+            </div>
+
+            {/* Case 03 */}
+            <div className="card" style={{ borderTop: '4px solid #10b981', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#059669', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  CASE LOG 03 • BED MILLING
+                </span>
+                <span style={{ fontSize: '0.75rem', background: '#dcfce7', color: '#15803d', padding: '2px 8px', borderRadius: 2, fontWeight: 700 }}>
+                  WATERBORNE BERTH
+                </span>
+              </div>
+              <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', lineHeight: 1.3 }}>
+                Gantry Crane Pedestal Bedplate Restoration
+              </h3>
+              <div style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600, marginBottom: '1rem' }}>
+                Location: Red Hook Marine Container Terminal • Brooklyn, NY
+              </div>
+              <p style={{ fontSize: '0.92rem', color: 'var(--color-text-dark)', marginBottom: '1.25rem', lineHeight: 1.6 }}>
+                <strong>The Challenge:</strong> Heavy container impact warped slewing ring foundation pads by 0.045", preventing crane slewing rotation and blocking ship discharge.
+              </p>
+              <div style={{ background: '#f8fafc', padding: '0.85rem 1rem', borderRadius: 2, marginBottom: '1.5rem', borderLeft: '3px solid #10b981' }}>
+                <div style={{ fontSize: '0.82rem', color: 'var(--color-navy)', fontWeight: 700 }}>
+                  EXECUTED TOLERANCE:
+                </div>
+                <div style={{ fontSize: '0.84rem', color: '#475569' }}>
+                  Rail-mounted 3-axis portable bed mill planed 8 mounting pads simultaneously to <strong>0.0018" coplanar flatness</strong>.
+                </div>
+              </div>
+              <Link to="/contact?service=Portable%20Milling" className="btn btn-outline-dark" style={{ marginTop: 'auto', fontSize: '0.85rem', padding: '0.65rem 1rem', textAlign: 'center' }}>
+                Mobilize Similar Operation &rarr;
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 6. Gallery Strip (6 items) */}
       <section className="section section-light">
         <div className="container">
