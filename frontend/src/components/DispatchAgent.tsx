@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageSquare, X, Send, Shield, Phone, Sparkles, CheckCircle2, Anchor, HelpCircle, FileText } from 'lucide-react';
+import { MessageSquare, X, Send, Shield, Phone, Sparkles, CheckCircle2, ChevronRight } from 'lucide-react';
 import { SiteSettings } from '../types';
 
 interface Message {
@@ -7,10 +7,20 @@ interface Message {
   sender: 'agent' | 'user';
   text: string;
   timestamp: string;
+  options?: string[];
 }
 
 interface DispatchAgentProps {
   settings: SiteSettings;
+}
+
+// Conversation context state to remember conversation thread
+interface ConversationContext {
+  topic?: 'line_boring' | 'flange_facing' | 'milling' | 'drilling' | 'boiler' | 'shipyards' | 'emergency' | 'general';
+  vesselOrPlant?: string;
+  location?: string;
+  boreSize?: string;
+  step: number;
 }
 
 export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
@@ -19,14 +29,15 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
     {
       id: 'welcome-1',
       sender: 'agent',
-      text: `Hello! Welcome to Brothers Machine Services. I am your 24/7 Field Assistant. 👋`,
+      text: `Hello! Welcome to Brothers Machine Services. I'm your 24/7 Field Machining Assistant. 👋`,
       timestamp: 'Just now',
     },
     {
       id: 'welcome-2',
       sender: 'agent',
-      text: `We are master outside machinists stationed on-site at GMD Brooklyn Navy Yard and Caddell Drydock. How can I help you today? You can ask me about our services, equipment, emergency mobilization, or request a quick quote!`,
+      text: `We specialize in bringing heavy precision machine tools directly to your vessel or facility inside GMD Brooklyn Navy Yard, Caddell Drydock, and throughout NY Harbor.\n\nWhat kind of machining job or equipment issue are you looking to solve?`,
       timestamp: 'Just now',
+      options: ['Line Boring', 'Flange Facing', 'Bed Milling', 'Emergency Drydock Service'],
     },
   ]);
   const [input, setInput] = useState('');
@@ -36,142 +47,133 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
   const [showCapturePrompt, setShowCapturePrompt] = useState(false);
   const [emailStatus, setEmailStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
 
+  // Conversational state memory
+  const [context, setContext] = useState<ConversationContext>({ step: 0 });
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen) {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages, isOpen, isTyping]);
+  }, [messages, isOpen, isTyping, showCapturePrompt]);
 
-  const quickPrompts = [
-    'What services do you provide?',
-    'Emergency Drydock Mobilization',
-    'Where are you located?',
-    'Request a Quote',
-  ];
+  // Conversational Multi-Turn Intelligence Engine
+  const processConversation = (userText: string, currentCtx: ConversationContext): { reply: string; nextOptions?: string[]; promptLead: boolean; updatedCtx: ConversationContext } => {
+    const q = userText.toLowerCase().trim();
+    let updated = { ...currentCtx, step: currentCtx.step + 1 };
 
-  const handleQuickPrompt = (prompt: string) => {
-    handleSend(prompt);
-  };
+    // 1. Direct answer to "Can you fix my Line Boring?" / Line Boring questions
+    if (q.includes('line boring') || q.includes('bore') || q.includes('stern tube') || q.includes('rudder trunk') || q.includes('strut')) {
+      updated.topic = 'line_boring';
+      return {
+        reply: `Yes, absolutely! Line boring is our primary specialty. We re-bore worn stern tubes, rudder pintles, engine block crankshaft main bearings, and crane pivots back to factory concentricity and zero-tolerance specifications directly in the drydock.\n\nTo see how we can assist: What equipment needs boring (e.g., stern tube, rudder trunk, or pin bore), and what is the approximate diameter?`,
+        nextOptions: ['Stern Tube (Propulsion)', 'Rudder Trunk / Pintles', 'Engine Block Main Bores', 'Heavy Crane / Pivot Pin'],
+        promptLead: false,
+        updatedCtx: updated,
+      };
+    }
 
-  const getKnowledgeResponse = (userText: string): { reply: string; promptLead: boolean } => {
-    const q = userText.toLowerCase();
+    // Follow-ups if visitor is talking about line boring details
+    if (currentCtx.topic === 'line_boring' && (q.includes('stern') || q.includes('rudder') || q.includes('inch') || q.includes('diameter') || q.includes('feet') || q.includes('long') || q.includes('tug') || q.includes('barge') || q.includes('ship') || q.includes('boat'))) {
+      return {
+        reply: `Got it! We bring heavy portable boring bars spanning diameters from 1.5" up to 60"+ with optical laser collimators to guarantee exact centerline alignment over spans of 40+ feet without dismantling ship structures.\n\nWhere is the vessel currently located (e.g. Caddell Drydock, GMD Navy Yard, or at your berth)?`,
+        nextOptions: ['Caddell Drydock (Staten Island)', 'GMD Brooklyn Navy Yard', 'At Our Pier / Berth', 'Upcoming Drydock Visit'],
+        promptLead: false,
+        updatedCtx: updated,
+      };
+    }
 
-    // 1. Greetings & Pleasantries
+    // 2. Boilers & Steam Plants
+    if (q.includes('boiler') || q.includes('steam drum') || q.includes('tube sheet') || q.includes('manway') || q.includes('handhole')) {
+      updated.topic = 'boiler';
+      return {
+        reply: `Yes, we machine boiler and pressure vessel components directly on-site! Specifically, we re-machine warped manway and handhole gasket sealing faces, re-face steam drum nozzle flanges, and precision-ream tube sheets to stop steam leaks.\n\nIs your boiler leaking at a gasket flange/door, or do you have damaged threads/broken studs that need extraction?`,
+        nextOptions: ['Warped Gasket / Manhole Face', 'Steam Flange Leak', 'Broken Stud Extraction', 'Tube Sheet Reaming'],
+        promptLead: false,
+        updatedCtx: updated,
+      };
+    }
+
+    // 3. Flange Facing
+    if (q.includes('flange') || q.includes('facing') || q.includes('valve') || q.includes('pump') || q.includes('gasket') || q.includes('leak')) {
+      updated.topic = 'flange_facing';
+      return {
+        reply: `Yes, we do in-situ flange facing up to 120"+ in diameter! We mount portable ID and OD facers directly to piping, high-pressure valves, and pump discharges, re-cutting standard ASME phonographic spiral serrated finishes to ensure a 100% leak-proof seal.\n\nWhat is the pipe size or flange diameter, and is this steam, fuel, or seawater service?`,
+        nextOptions: ['Under 12 Inches', '12 to 36 Inches', 'Over 36 Inches', 'High-Pressure Steam Valve'],
+        promptLead: false,
+        updatedCtx: updated,
+      };
+    }
+
+    // 4. Bed Milling
+    if (q.includes('mill') || q.includes('bedplate') || q.includes('foundation') || q.includes('chock') || q.includes('winch') || q.includes('crane base')) {
+      updated.topic = 'milling';
+      return {
+        reply: `Yes! We deploy portable rail-mounted 3-axis linear and circular bed mills directly onto vessel decks, main engine foundation chocks, winch bedplates, and crane slewing pedestals to restore true coplanar flatness within thousandths of an inch.\n\nWhat is the approximate size of the foundation or bedplate area?`,
+        nextOptions: ['Main Engine Chocks', 'Winch / Windlass Bed', 'Crane Slewing Ring', 'Deck Machinery Pad'],
+        promptLead: false,
+        updatedCtx: updated,
+      };
+    }
+
+    // 5. Drilling, Tapping, Broken Studs
+    if (q.includes('drill') || q.includes('tap') || q.includes('stud') || q.includes('bolt') || q.includes('thread') || q.includes('broken')) {
+      updated.topic = 'drilling';
+      return {
+        reply: `We specialize in heavy on-site drilling, reaming of fitted coupling bolts, and spark-free extraction of seized or broken studs from engine blocks, cylinder heads, and marine hulls in tight quarters.\n\nDo you currently have a broken stud that needs removal, or oversized bolt holes that need reaming?`,
+        nextOptions: ['Broken Stud Removal', 'Coupling Bolt Reaming', 'Heavy Hole Drilling & Tapping'],
+        promptLead: false,
+        updatedCtx: updated,
+      };
+    }
+
+    // 6. Emergency Mobilization
+    if (q.includes('emergency') || q.includes('asap') || q.includes('urgent') || q.includes('tonight') || q.includes('weekend') || q.includes('tomorrow') || q.includes('dispatch') || q.includes('24/7')) {
+      updated.topic = 'emergency';
+      return {
+        reply: `🚨 We provide 24/7 emergency field mobilization. Because our technicians and machine tooling are permanently stationed inside GMD Brooklyn Navy Yard and Caddell Drydock, we can be at your dock with equipment on short notice.\n\nWould you like our on-call supervisor to call you immediately, or do you prefer to share your vessel coordinates here?`,
+        nextOptions: ['Call Me Right Now', 'I Will Provide Vessel Details', 'What Are Your Rates?'],
+        promptLead: true,
+        updatedCtx: updated,
+      };
+    }
+
+    // 7. Location Follow-ups
+    if (q.includes('caddell') || q.includes('gmd') || q.includes('brooklyn') || q.includes('staten island') || q.includes('new york') || q.includes('yard') || q.includes('pier')) {
+      return {
+        reply: `Excellent. Having permanent stations inside both GMD Brooklyn Navy Yard (Graving Docks 1, 5, 6) and Caddell Drydock (Staten Island) means our crews have full security badges and equipment staging already on-site—saving you massive mobilization time.\n\nWhat is your vessel name and docking timeframe?`,
+        nextOptions: ['Currently in Drydock', 'Docking in 24-48 Hours', 'Planned Inspection Next Week'],
+        promptLead: true,
+        updatedCtx: updated,
+      };
+    }
+
+    // 8. Cost & Quotes
+    if (q.includes('quote') || q.includes('cost') || q.includes('price') || q.includes('how much') || q.includes('rate') || q.includes('estimate')) {
+      return {
+        reply: `Our rates depend on the tooling required (boring bar size, facing rig, or rail mill), depth/diameter, and drydock schedule. We provide fast, itemized commercial estimates.\n\nIf you drop your contact details below, our chief estimator will review your specs and email or call you with a quote right away!`,
+        promptLead: true,
+        updatedCtx: updated,
+      };
+    }
+
+    // 9. Greetings
     if (q.match(/^(hi|hello|hey|good morning|good afternoon|good evening|howdy)/)) {
       return {
-        reply: `Hello there! Great to connect with you. We're here to help with all on-site marine and heavy industrial machining. Are you planning an upcoming drydock repair, or do you have an urgent machining need?`,
+        reply: `Hello! Great to speak with you. Are you facing a current machinery breakdown, or planning an upcoming drydock repair schedule?`,
+        nextOptions: ['Active Machinery Issue', 'Planning Upcoming Drydock', 'Looking for General Pricing'],
         promptLead: false,
+        updatedCtx: updated,
       };
     }
 
-    if (q.includes('who are you') || q.includes('what is brothers machine') || q.includes('tell me about')) {
-      return {
-        reply: `Brothers Machine Services Corp is a specialized outside machining company with over ${settings.years_experience} years of hands-on experience. We bring precision heavy machine tools directly to vessels, drydocks, and facilities across New York Harbor and the Eastern Seaboard—eliminating the need to cut decks or transport huge components away for repair.`,
-        promptLead: true,
-      };
-    }
-
-    // 2. Services Overview
-    if (q.includes('what service') || q.includes('what do you do') || q.includes('capabilities') || q.includes('services')) {
-      return {
-        reply: `Our core outside machining capabilities include:\n• In-Place Line Boring (stern tubes, rudder trunks, engine blocks up to 60"+ ID)\n• In-Situ Flange Facing (2" to 120"+, ASME phonographic spiral serrated finishes)\n• Portable Bed Milling (rail-mounted milling for engine foundations & winch bedplates)\n• Precision Heavy Drilling & Tapping (broken stud removal & thread repair)\n• Shaft & Rudder Journal Restoration (orbital turning & optical alignment).\n\nWhich of these matches your project?`,
-        promptLead: true,
-      };
-    }
-
-    // 3. Line Boring Specifics
-    if (q.includes('line boring') || q.includes('boring') || q.includes('stern tube') || q.includes('rudder trunk') || q.includes('strut')) {
-      return {
-        reply: `We operate heavy portable boring bars that machine diameters from 1.5 inches up to 60+ inches, spanning stern tubes 40+ feet long. We use continuous laser and optical collimator alignment to restore exact factory centerline tolerances directly inside the drydock slipway without pulling the housing. Would you like an estimate for your bore dimensions?`,
-        promptLead: true,
-      };
-    }
-
-    // 4. Flange Facing & Boiler / Pressure Vessel Machining
-    if (q.includes('boiler') || q.includes('tube sheet') || q.includes('steam drum') || q.includes('pressure vessel') || q.includes('manhole') || q.includes('handhole')) {
-      return {
-        reply: `Regarding boilers and pressure vessels: We do precision in-situ machining on boiler manway/handhole gasket faces, steam drum flange surfaces, tube sheet reaming, and high-pressure steam valve refacing to eliminate steam and feed leaks.\n\nNote: If you need structural tube retubing or internal burner refractory/welding, that is performed by specialized boiler mechanics, but we machine all sealing faces, flanges, and studs directly on-site. What specific boiler component needs machining?`,
-        promptLead: true,
-      };
-    }
-
-    if (q.includes('flange') || q.includes('facing') || q.includes('valve') || q.includes('pump base') || q.includes('gasket') || q.includes('leak')) {
-      return {
-        reply: `Our portable ID- and OD-mount flange facers handle flanges from 2" up to 120"+ diameter. We cut precise ASME/ANSI phonographic spiral serrated finishes (125–250 Ra) or smooth gasket faces for high-pressure steam, exhaust, fuel, and seawater lines on-site.`,
-        promptLead: true,
-      };
-    }
-
-    // 5. Portable Milling Specifics
-    if (q.includes('mill') || q.includes('bed milling') || q.includes('chock') || q.includes('foundation') || q.includes('winch')) {
-      return {
-        reply: `We use rail-mounted linear and circular bed mills mounted directly to vessel decks, main engine foundations, crane slewing rings, and thruster wells. This restores true coplanar flatness within thousandths of an inch without torch cutting or off-site machining.`,
-        promptLead: true,
-      };
-    }
-
-    // 6. Drilling & Tapping / Stud Removal
-    if (q.includes('drill') || q.includes('tap') || q.includes('stud') || q.includes('bolt') || q.includes('thread')) {
-      return {
-        reply: `We deploy high-torque magnetic-base and pneumatic drills for heavy reaming, line boring of fitted bolt holes, and EDM/spark-free extraction of broken studs from engine blocks and casing joints in tight quarters.`,
-        promptLead: true,
-      };
-    }
-
-    // 7. Locations & Shipyards
-    if (q.includes('where are you') || q.includes('location') || q.includes('address') || q.includes('shipyard') || q.includes('gmd') || q.includes('caddell') || q.includes('travel')) {
-      return {
-        reply: `We are permanently stationed inside:\n1. GMD Brooklyn Navy Yard (Graving Docks 1, 5, and 6)\n2. Caddell Drydock (Staten Island, NY).\n\nIn addition to our permanent shipyard stations, our mobile field units travel dockside and onboard vessels throughout the Port of New York & New Jersey, and along the entire Eastern Seaboard.`,
-        promptLead: false,
-      };
-    }
-
-    // 8. Emergency Dispatch & Response Time
-    if (q.includes('emergency') || q.includes('urgent') || q.includes('asap') || q.includes('dispatch') || q.includes('weekend') || q.includes('night') || q.includes('24/7')) {
-      return {
-        reply: `🚨 We provide 24/7 emergency dispatch! Because our tools and personnel are already stationed inside GMD and Caddell Drydocks, we can mobilize rapid-response crews immediately to minimize vessel downtime.\n\nFor immediate emergency assistance, call our 24/7 dispatch phone directly: ${settings.phone}.`,
-        promptLead: true,
-      };
-    }
-
-    // 9. Insurance & Compliance
-    if (q.includes('insurance') || q.includes('insured') || q.includes('liability') || q.includes('abs') || q.includes('uscg') || q.includes('class')) {
-      return {
-        reply: `Yes, Brothers Machine Services Corp is fully insured with comprehensive marine contractor coverage, including Ship-Repairer Liability (SRL), USL&H workers' compensation, and Marine General Liability up to $5,000,000+. All work meets ABS, USCG, and DNV classification society standards.`,
-        promptLead: false,
-      };
-    }
-
-    // 10. Pricing & Quotes
-    if (q.includes('price') || q.includes('cost') || q.includes('rate') || q.includes('quote') || q.includes('estimate') || q.includes('how much')) {
-      return {
-        reply: `Because outside machining jobs vary by bore diameter, length, tolerances, and accessibility, we provide fast, firm proposals. Please share your project details and contact info below, and our chief estimator will send you an official quote promptly!`,
-        promptLead: true,
-      };
-    }
-
-    // 11. Phone & Direct Contact
-    if (q.includes('phone') || q.includes('call') || q.includes('number') || q.includes('contact') || q.includes('email')) {
-      return {
-        reply: `You can reach our field dispatch directly 24/7 at ${settings.phone}, or via email at ${settings.email}. You can also leave your details right here and we'll contact you immediately!`,
-        promptLead: true,
-      };
-    }
-
-    // 12. Experience & Track Record
-    if (q.includes('experience') || q.includes('history') || q.includes('years') || q.includes('reputation')) {
-      return {
-        reply: `We bring over ${settings.years_experience} years of specialized outside marine machining experience. Our machinists have worked on tug fleets, barges, high-speed ferries, container vessels, and Military Sealift Command ships throughout New York Harbor.`,
-        promptLead: false,
-      };
-    }
-
-    // Default Fallback
+    // 10. General conversational follow-up
     return {
-      reply: `Thank you for asking! We specialize exclusively in bringing precision heavy outside machining tools directly to your ship, drydock, or plant across New York Harbor. Could you tell me a bit more about your equipment or the specific machining you need?`,
+      reply: `I understand. We handle all forms of on-site marine and heavy industrial machining—bringing our machine tools directly to the work rather than transporting parts off-site.\n\nCould you tell me a little more about what equipment you're working on, or would you like a call from our outside machining specialist?`,
+      nextOptions: ['Request a Call from Machinist', 'Line Boring Details', 'Flange Facing Details', 'Emergency Dispatch'],
       promptLead: true,
+      updatedCtx: updated,
     };
   };
 
@@ -190,23 +192,25 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
     if (!overrideText) setInput('');
     setIsTyping(true);
 
-    // Knowledge-driven response engine
     setTimeout(() => {
-      const { reply, promptLead } = getKnowledgeResponse(userText);
+      const { reply, nextOptions, promptLead, updatedCtx } = processConversation(userText, context);
+      setContext(updatedCtx);
 
       const agentMessage: Message = {
         id: `agent-${Date.now()}`,
         sender: 'agent',
         text: reply,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        options: nextOptions,
       };
 
       setMessages((prev) => [...prev, agentMessage]);
       setIsTyping(false);
+
       if (promptLead && !contactCaptured) {
         setShowCapturePrompt(true);
       }
-    }, 600);
+    }, 550);
   };
 
   const handleCaptureSubmit = async (e: React.FormEvent) => {
@@ -227,10 +231,10 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
           name: leadInfo.name,
           phone: leadInfo.phone,
           email: leadInfo.email || `${leadInfo.name.replace(/\s+/g, '.').toLowerCase()}@field-dispatch.com`,
-          company: leadInfo.company || 'Website Live Chat Inquiry',
-          shipyard_location: 'Stationed Field Assistant Consultation',
-          service_needed: 'Outside Machining Inquiry & Transcript',
-          message: `--- CLIENT CHAT INQUIRY TRANSCRIPT ---\n${transcriptText}\n\nClient Phone: ${leadInfo.phone}\nCompany: ${leadInfo.company || 'N/A'}\n\nPlease follow up as requested.`,
+          company: leadInfo.company || 'Website Live Chat Conversation',
+          shipyard_location: context.topic || 'Outside Machining Consultation',
+          service_needed: 'Interactive Chat Lead & Transcript',
+          message: `--- CLIENT CHAT CONVERSATION TRANSCRIPT ---\n${transcriptText}\n\nContact Requested: ${leadInfo.phone}\nCompany/Vessel: ${leadInfo.company || 'N/A'}\n\nPlease follow up immediately.`,
         }),
       });
 
@@ -241,7 +245,7 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
       const confirmMessage: Message = {
         id: `agent-confirm-${Date.now()}`,
         sender: 'agent',
-        text: `Got it, ${leadInfo.name}! Your message and our full conversation have been emailed directly to our lead supervisor. We will review your job details and get back to you shortly.`,
+        text: `Thank you, ${leadInfo.name}! Your job specifications and our conversation transcript have been forwarded directly to our on-call supervisor. We will contact you at ${leadInfo.phone} shortly.`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
       setMessages((prev) => [...prev, confirmMessage]);
@@ -317,8 +321,8 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
             position: 'fixed',
             bottom: '2rem',
             right: '2rem',
-            width: 'clamp(340px, 92vw, 420px)',
-            height: 'clamp(520px, 80vh, 640px)',
+            width: 'clamp(340px, 92vw, 430px)',
+            height: 'clamp(530px, 82vh, 660px)',
             backgroundColor: '#ffffff',
             borderRadius: '10px',
             boxShadow: '0 20px 50px rgba(4, 23, 35, 0.45), 0 0 0 1px rgba(20, 155, 234, 0.25)',
@@ -375,7 +379,7 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
                   />
                 </div>
                 <p style={{ margin: 0, fontSize: '0.73rem', color: '#cbd5e1' }}>
-                  Outside Machining & On-Site Marine Services
+                  Stationed at GMD Navy Yard & Caddell Drydock
                 </p>
               </div>
             </div>
@@ -426,8 +430,8 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
               borderBottom: '1px solid rgba(255,255,255,0.06)',
             }}
           >
-            <span>Stationed at GMD Navy Yard & Caddell Drydock</span>
-            <span style={{ color: 'var(--color-steel-blue)', fontWeight: 600 }}>$5M Insured</span>
+            <span>Outside Machining Across NY Harbor</span>
+            <span style={{ color: 'var(--color-steel-blue)', fontWeight: 600 }}>$5M Marine Insured</span>
           </div>
 
           {/* Conversation Area */}
@@ -453,7 +457,7 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
               >
                 <div
                   style={{
-                    maxWidth: '85%',
+                    maxWidth: '86%',
                     padding: '0.75rem 1rem',
                     borderRadius: m.sender === 'user' ? '14px 14px 2px 14px' : '14px 14px 14px 2px',
                     backgroundColor: m.sender === 'user' ? 'var(--color-navy)' : '#ffffff',
@@ -467,6 +471,47 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
                 >
                   {m.text}
                 </div>
+
+                {/* Interactive Dynamic Options */}
+                {m.options && m.options.length > 0 && !isTyping && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginTop: '0.5rem', maxWidth: '90%' }}>
+                    {m.options.map((opt) => (
+                      <button
+                        key={opt}
+                        onClick={() => handleSend(opt)}
+                        style={{
+                          background: '#ffffff',
+                          border: '1px solid #cbd5e1',
+                          borderRadius: '16px',
+                          padding: '0.35rem 0.75rem',
+                          fontSize: '0.74rem',
+                          fontWeight: 600,
+                          color: 'var(--color-navy)',
+                          cursor: 'pointer',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+                          transition: 'all 0.15s ease',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.borderColor = 'var(--color-steel-blue)';
+                          e.currentTarget.style.color = 'var(--color-steel-blue)';
+                          e.currentTarget.style.background = '#f0f9ff';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.borderColor = '#cbd5e1';
+                          e.currentTarget.style.color = 'var(--color-navy)';
+                          e.currentTarget.style.background = '#ffffff';
+                        }}
+                      >
+                        <span>{opt}</span>
+                        <ChevronRight size={12} opacity={0.6} />
+                      </button>
+                    ))}
+                  </div>
+                )}
+
                 <span style={{ fontSize: '0.65rem', color: '#94a3b8', marginTop: '3px', paddingInline: '4px' }}>
                   {m.timestamp}
                 </span>
@@ -477,44 +522,6 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '0.5rem 0.75rem' }}>
                 <span className="eyebrow-dot" style={{ animation: 'pulse 1s infinite' }} />
                 <span style={{ fontSize: '0.75rem', color: '#64748b' }}>Assistant is typing...</span>
-              </div>
-            )}
-
-            {/* Quick Prompts */}
-            {messages.length <= 3 && !isTyping && (
-              <div style={{ marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-                <p style={{ margin: 0, fontSize: '0.72rem', color: '#64748b', fontWeight: 600 }}>
-                  Suggested Questions:
-                </p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
-                  {quickPrompts.map((q) => (
-                    <button
-                      key={q}
-                      onClick={() => handleQuickPrompt(q)}
-                      style={{
-                        background: '#ffffff',
-                        border: '1px solid #cbd5e1',
-                        borderRadius: '16px',
-                        padding: '0.4rem 0.8rem',
-                        fontSize: '0.75rem',
-                        color: 'var(--color-navy)',
-                        cursor: 'pointer',
-                        textAlign: 'left',
-                        transition: 'all 0.15s ease',
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = 'var(--color-steel-blue)';
-                        e.currentTarget.style.color = 'var(--color-steel-blue)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = '#cbd5e1';
-                        e.currentTarget.style.color = 'var(--color-navy)';
-                      }}
-                    >
-                      {q}
-                    </button>
-                  ))}
-                </div>
               </div>
             )}
 
@@ -647,7 +654,7 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
           >
             <input
               type="text"
-              placeholder="Ask anything about our machining, drydocks, or quotes..."
+              placeholder="Type your message, question, or job detail..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => {
