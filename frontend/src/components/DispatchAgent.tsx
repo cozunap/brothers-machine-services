@@ -247,7 +247,7 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
 
   return (
     <>
-      {/* Floating Trigger Button: Clean, engaging, friendly & stacked above scroll-to-top */}
+      {/* Floating Trigger Button: Narrow 3-line format */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
@@ -258,19 +258,17 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
             zIndex: 998,
             display: 'flex',
             alignItems: 'center',
-            gap: '0.55rem',
-            padding: '0.55rem 1rem',
+            gap: '0.6rem',
+            padding: '0.45rem 0.75rem',
             background: 'var(--color-navy)',
             color: '#ffffff',
             border: '1px solid rgba(20, 155, 234, 0.5)',
-            borderRadius: '24px',
+            borderRadius: '12px',
             cursor: 'pointer',
             boxShadow: '0 6px 20px rgba(4, 23, 35, 0.35)',
             fontFamily: 'var(--font-heading)',
-            fontSize: '0.8rem',
-            fontWeight: 600,
-            letterSpacing: '0.02em',
             transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+            textAlign: 'left',
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-2px)';
@@ -284,18 +282,24 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
           }}
           aria-label="Chat with Brothers Machine Assistant"
         >
-          <span
-            style={{
-              width: 8,
-              height: 8,
-              borderRadius: '50%',
-              backgroundColor: '#10b981',
-              boxShadow: '0 0 8px #10b981',
-              display: 'inline-block',
-            }}
-          />
-          <MessageSquare size={15} color="var(--color-steel-blue)" />
-          <span>Ask Brothers Machine <span style={{ opacity: 0.65, fontSize: '0.72rem' }}>| 24/7</span></span>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
+            <span
+              style={{
+                width: 7,
+                height: 7,
+                borderRadius: '50%',
+                backgroundColor: '#10b981',
+                boxShadow: '0 0 8px #10b981',
+                display: 'inline-block',
+              }}
+            />
+            <MessageSquare size={16} color="var(--color-steel-blue)" />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.15, fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.02em' }}>
+            <span>Ask</span>
+            <span style={{ color: 'var(--color-steel-blue)' }}>Brother</span>
+            <span>Machine</span>
+          </div>
         </button>
       )}
 
