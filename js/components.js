@@ -28,14 +28,14 @@
           <div class="top-bar-left">
             <span class="status-indicator"><span class="status-pulse"></span> STATIONED ON-SITE:</span>
             <span class="station-tag">GMD Navy Shipyard (Brooklyn)</span>
-            <span class="divider">|</span>
+            <span class="divider">/</span>
             <span class="station-tag">Caddell Drydock (Staten Island)</span>
           </div>
           <div class="top-bar-right">
-            <span class="station-tag" style="color:var(--brand-blue-light);">🛡️ Fully Insured Marine Machining</span>
-            <span class="divider">|</span>
+            <span class="station-tag" style="color:var(--steel-300);">Fully Insured Marine Machining</span>
+            <span class="divider">/</span>
             <a href="tel:+17185550199" class="phone-link">
-              📞 24/7 Dispatch: <strong>(718) 555-0199</strong>
+              24/7 Dispatch: <strong>(718) 555-0199</strong>
             </a>
           </div>
         </div>
