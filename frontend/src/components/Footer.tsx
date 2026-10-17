@@ -11,12 +11,7 @@ export const Footer: React.FC<FooterProps> = ({ settings }) => {
   return (
     <footer className="site-footer" style={{ background: 'var(--color-navy)', color: '#ffffff', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '50px', paddingBottom: '2.5rem' }}>
       <div className="container">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-          gap: '3rem',
-          marginBottom: '3.5rem'
-        }}>
+        <div className="footer-grid" style={{ marginBottom: '3.5rem' }}>
           {/* Col 1: Brand & Credentials */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1.25rem' }}>
