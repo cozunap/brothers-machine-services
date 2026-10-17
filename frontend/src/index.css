@@ -30,7 +30,7 @@
   --font-body: 'Roboto', 'Arimo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   --container-max: 1240px;
-  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 *, *::before, *::after {
@@ -455,4 +455,114 @@ img {
   .nav-links {
     display: none;
   }
+}
+
+/* ========================================================
+   PREMIUM MICRO-ANIMATIONS & INTERACTION TOKENS
+   ======================================================== */
+
+/* Card Image Zoom on Card Hover */
+.card {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(4, 23, 35, 0.12);
+  border-color: var(--color-steel-blue);
+}
+
+.card img,
+.gallery-thumb {
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
+  will-change: transform;
+}
+
+.card:hover img,
+.card:hover .gallery-thumb {
+  transform: scale(1.04);
+}
+
+/* Premium Button Hover Polish */
+.btn {
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(236, 81, 56, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(236, 81, 56, 0.3);
+}
+
+.btn-secondary {
+  transition: var(--transition);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.1);
+}
+
+.btn-outline-dark {
+  transition: var(--transition);
+}
+
+.btn-outline-dark:hover {
+  border-color: var(--color-steel-blue);
+  color: var(--color-steel-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(20, 155, 234, 0.15);
+}
+
+/* Subtle Link Underline Slide Animation */
+.footer-grid a {
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.footer-grid a:hover {
+  color: var(--color-steel-blue) !important;
+  transform: translateX(3px);
+}
+
+/* Badge & Tag Hover */
+span[style*="borderRadius: 2"],
+span[style*="border-radius: 2px"] {
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Page Entrance Animation */
+@keyframes premiumFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+main > * {
+  animation: premiumFadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* Form Input Focus Glow */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-steel-blue) !important;
+  box-shadow: 0 0 0 3px rgba(20, 155, 234, 0.2) !important;
 }
