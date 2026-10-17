@@ -109,17 +109,22 @@ INSERT OR IGNORE INTO services (id, slug, name, short_description, long_descript
 (6, 'emergency-field-service', 'Emergency Field Service', 'Rapid mobilization for unscheduled breakdowns during critical docking availabilities.', '24/7 rapid response across the Port of New York & New Jersey. Fully equipped mobile machining trailers with generators, tooling bars, and seasoned crews deployable within hours.', '/assets/Brothers-Machine-Services-Corp-Photo-17.webp', 6, 1);
 
 -- Default Gallery Items
-INSERT OR IGNORE INTO gallery_items (id, title, caption, image_url, category, sort_order, visible) VALUES
-(1, 'Stern Tube Sleeve & Bore', 'Finish-machined stern tube sleeve showing internal bearing bore geometry and keyway detail.', '/assets/Brothers-Machine-Services-Corp-Photo-1.webp', 'Line Boring', 1, 1),
-(2, 'Prussian Blue Contact Check', 'Precision bearing sleeve contact pattern inspection with 90%+ dyestuff verification.', '/assets/Brothers-Machine-Services-Corp-Photo-2.webp', 'Line Boring', 2, 1),
-(3, 'Engine Room Shaft Coupling', 'Precision dialed coupling alignment between reduction gear and propulsion shaft in shaft alley.', '/assets/Brothers-Machine-Services-Corp-Photo-3.webp', 'Milling', 3, 1),
-(4, 'Caddell Deck Winch Overhaul', 'Heavy marine winch disassembly and on-deck bearing boring at Caddell Drydock.', '/assets/Brothers-Machine-Services-Corp-Photo-5.webp', 'Drydock', 4, 1),
-(5, 'Shaft Alley Rigging Team', 'Brothers Machine team coordinating propulsion shafting and bearing alignment under dock deadlines.', '/assets/Brothers-Machine-Services-Corp-Photo-10.webp', 'Drydock', 5, 1),
-(6, 'Heavy Propeller Lift', 'Heavy 4-blade propeller rigging and bore taper preparation at shipyard slipway.', '/assets/Brothers-Machine-Services-Corp-Photo-14.webp', 'Drydock', 6, 1),
-(7, 'Hydraulic Flange Bolt Tensioning', 'Multi-cylinder calibrated hydraulic tensioning for uniform clamp load on main shaft flange.', '/assets/Brothers-Machine-Services-Corp-Photo-16.webp', 'Flange Facing', 7, 1),
-(8, 'GMD Shipyard Stern Overhaul', 'Commercial vessel in Drydock 1 at GMD Shipyard undergoing stern tube line boring.', '/assets/Brothers-Machine-Services-Corp-Photo-17.webp', 'Drydock', 8, 1),
-(9, 'Safety-Wired Marine Fasteners', 'High-spec marine safety wiring securing fasteners against heavy hull vibration.', '/assets/Brothers-Machine-Services-Corp-Photo-18.webp', 'Shop', 9, 1),
-(10, 'Composite Stern Tube Bearing', 'Water-lubricated Thordon composite bearing installed and line-checked in ship stern frame.', '/assets/Brothers-Machine-Services-Corp-Photo-21.webp', 'Line Boring', 10, 1);
+INSERT OR REPLACE INTO gallery_items (id, title, caption, image_url, category, sort_order, visible) VALUES
+(1, 'Stern Tube Sleeve & Bore', 'Finish-machined stern tube sleeve showing internal bearing bore geometry and keyway detail.', '/assets/Brothers-Machine-Services-Corp-Photo-2.webp', 'Line Boring', 1, 1),
+(2, 'Prussian Blue Contact Check', 'Precision bearing sleeve contact pattern inspection with 90%+ dyestuff verification.', '/assets/Brothers-Machine-Services-Corp-Photo-4.webp', 'Line Boring', 2, 1),
+(3, 'Engine Room Shaft Coupling', 'Precision dialed coupling alignment between reduction gear and propulsion shaft in shaft alley.', '/assets/Brothers-Machine-Services-Corp-Photo-6.webp', 'Milling', 3, 1),
+(4, 'Caddell Deck Winch Overhaul', 'Heavy marine winch disassembly and on-deck bearing boring at Caddell Drydock.', '/assets/Brothers-Machine-Services-Corp-Photo-7.webp', 'Drydock', 4, 1),
+(5, 'Shaft Alley Rigging Team', 'Brothers Machine team coordinating propulsion shafting and bearing alignment under dock deadlines.', '/assets/Brothers-Machine-Services-Corp-Photo-8.webp', 'Drydock', 5, 1),
+(6, 'Heavy Propeller Lift', 'Heavy 4-blade propeller rigging and bore taper preparation at shipyard slipway.', '/assets/Brothers-Machine-Services-Corp-Photo-9.webp', 'Drydock', 6, 1),
+(7, 'Hydraulic Flange Bolt Tensioning', 'Multi-cylinder calibrated hydraulic tensioning for uniform clamp load on main shaft flange.', '/assets/Brothers-Machine-Services-Corp-Photo-11.webp', 'Flange Facing', 7, 1),
+(8, 'GMD Shipyard Stern Overhaul', 'Commercial vessel in Drydock 1 at GMD Shipyard undergoing stern tube line boring.', '/assets/Brothers-Machine-Services-Corp-Photo-12.webp', 'Drydock', 8, 1),
+(9, 'Propulsion Bearing Assembly', 'Alignment and fit verification of heavy-duty propulsion split bearing.', '/assets/Brothers-Machine-Services-Corp-Photo-13.webp', 'Shop', 9, 1),
+(10, 'Slipway Rudder Pintle Prep', 'Preparing lower rudder pintle gudgeon for portable boring bar installation.', '/assets/Brothers-Machine-Services-Corp-Photo-14.webp', 'Drydock', 10, 1),
+(11, 'Heavy Shaft Precision Inspection', 'Checking shaft runout and diameter tolerances with calibrated verniers.', '/assets/Brothers-Machine-Services-Corp-Photo-15.webp', 'Shop', 11, 1),
+(12, 'Field Rigging & Component Prep', 'Mobile crane lifting structural machining component to ship deck.', '/assets/Brothers-Machine-Services-Corp-Photo-19.webp', 'Drydock', 12, 1),
+(13, 'Machining Setup in Hull', 'Mounting facing machine to thruster casing flange inside drydock.', '/assets/Brothers-Machine-Services-Corp-Photo-20.webp', 'Flange Facing', 13, 1),
+(14, 'Composite Stern Tube Bearing', 'Water-lubricated Thordon composite bearing installed and line-checked in ship stern frame.', '/assets/Brothers-Machine-Services-Corp-Photo-21.webp', 'Line Boring', 14, 1),
+(15, 'On-Site Dial Indicator Verification', 'Final concentricity measurement verifying total indicator reading (TIR) within .0005".', '/assets/Brothers-Machine-Services-Corp-Photo-22.webp', 'Line Boring', 15, 1);
 
 -- Default Testimonials (Sample entries)
 INSERT OR IGNORE INTO testimonials (id, quote, author, company, visible) VALUES
