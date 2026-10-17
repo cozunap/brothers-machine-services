@@ -46,6 +46,11 @@ html {
   background-color: #ffffff;
 }
 
+/* Ensure anchor links have breathing room below the sticky header */
+[id] {
+  scroll-margin-top: 110px;
+}
+
 body {
   font-family: var(--font-body);
   line-height: 1.6;

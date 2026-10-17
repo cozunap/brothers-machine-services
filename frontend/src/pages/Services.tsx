@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { ServiceItem } from '../types';
 
 interface ServicesProps {
@@ -7,6 +7,16 @@ interface ServicesProps {
 }
 
 export const Services: React.FC<ServicesProps> = ({ services }) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location.hash, services]);
   return (
     <div>
       {/* Page Hero */}
