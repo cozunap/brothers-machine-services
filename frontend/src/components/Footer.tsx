@@ -136,7 +136,7 @@ export const Footer: React.FC<FooterProps> = ({ settings }) => {
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '1rem',
-          fontSize: '0.84rem',
+          fontSize: '10px',
           color: '#64748b'
         }}>
           <div>
