@@ -89,8 +89,15 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
       };
     }
 
-    // 4. Flange Facing Specifics
-    if (q.includes('flange') || q.includes('facing') || q.includes('valve') || q.includes('pump base') || q.includes('gasket')) {
+    // 4. Flange Facing & Boiler / Pressure Vessel Machining
+    if (q.includes('boiler') || q.includes('tube sheet') || q.includes('steam drum') || q.includes('pressure vessel') || q.includes('manhole') || q.includes('handhole')) {
+      return {
+        reply: `Regarding boilers and pressure vessels: We do precision in-situ machining on boiler manway/handhole gasket faces, steam drum flange surfaces, tube sheet reaming, and high-pressure steam valve refacing to eliminate steam and feed leaks.\n\nNote: If you need structural tube retubing or internal burner refractory/welding, that is performed by specialized boiler mechanics, but we machine all sealing faces, flanges, and studs directly on-site. What specific boiler component needs machining?`,
+        promptLead: true,
+      };
+    }
+
+    if (q.includes('flange') || q.includes('facing') || q.includes('valve') || q.includes('pump base') || q.includes('gasket') || q.includes('leak')) {
       return {
         reply: `Our portable ID- and OD-mount flange facers handle flanges from 2" up to 120"+ diameter. We cut precise ASME/ANSI phonographic spiral serrated finishes (125–250 Ra) or smooth gasket faces for high-pressure steam, exhaust, fuel, and seawater lines on-site.`,
         promptLead: true,
