@@ -6,6 +6,7 @@ import { fetchSettings, fetchServices, fetchGallery, fallbackSettings } from './
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
+import { DispatchAgent } from './components/DispatchAgent';
 
 import { Home } from './pages/Home';
 import { About } from './pages/About';
@@ -50,6 +51,7 @@ export const App: React.FC = () => {
               </main>
               <Footer settings={settings} />
               <ScrollToTop />
+              <DispatchAgent settings={settings} />
             </div>
           }
         />
