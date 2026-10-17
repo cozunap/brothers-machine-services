@@ -867,12 +867,13 @@ img {
 
 .hero-stat-num {
   font-family: var(--font-heading);
-  font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+  font-size: 30px;
   font-weight: 800;
   color: #ffffff;
-  line-height: 1;
+  line-height: 1.2;
   margin-bottom: 0.35rem;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .hero-stat-label {
