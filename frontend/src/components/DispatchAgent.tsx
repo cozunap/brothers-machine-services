@@ -156,55 +156,55 @@ export const DispatchAgent: React.FC<DispatchAgentProps> = ({ settings }) => {
 
   return (
     <>
-      {/* Floating Trigger Button */}
+      {/* Floating Trigger Button: Positioned cleanly ABOVE the scroll-to-top button */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
           style={{
             position: 'fixed',
-            bottom: '2rem',
-            right: '5.5rem',
+            bottom: '5.5rem',
+            right: '2rem',
             zIndex: 998,
             display: 'flex',
             alignItems: 'center',
-            gap: '0.65rem',
-            padding: '0.75rem 1.25rem',
+            gap: '0.5rem',
+            padding: '0.5rem 0.95rem',
             background: 'var(--color-navy)',
             color: '#ffffff',
-            border: '1px solid rgba(20, 155, 234, 0.4)',
-            borderRadius: '40px',
+            border: '1px solid rgba(20, 155, 234, 0.45)',
+            borderRadius: '24px',
             cursor: 'pointer',
-            boxShadow: '0 8px 24px rgba(4, 23, 35, 0.35)',
+            boxShadow: '0 6px 20px rgba(4, 23, 35, 0.35)',
             fontFamily: 'var(--font-heading)',
-            fontSize: '0.85rem',
+            fontSize: '0.75rem',
             fontWeight: 600,
             letterSpacing: '0.04em',
             transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-3px)';
+            e.currentTarget.style.transform = 'translateY(-2px)';
             e.currentTarget.style.borderColor = 'var(--color-steel-blue)';
-            e.currentTarget.style.boxShadow = '0 12px 30px rgba(20, 155, 234, 0.35)';
+            e.currentTarget.style.boxShadow = '0 8px 24px rgba(20, 155, 234, 0.4)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.borderColor = 'rgba(20, 155, 234, 0.4)';
-            e.currentTarget.style.boxShadow = '0 8px 24px rgba(4, 23, 35, 0.35)';
+            e.currentTarget.style.borderColor = 'rgba(20, 155, 234, 0.45)';
+            e.currentTarget.style.boxShadow = '0 6px 20px rgba(4, 23, 35, 0.35)';
           }}
           aria-label="Open 24/7 Field Dispatch Assistant"
         >
           <span
             style={{
-              width: 9,
-              height: 9,
+              width: 7,
+              height: 7,
               borderRadius: '50%',
               backgroundColor: '#10b981',
-              boxShadow: '0 0 10px #10b981',
+              boxShadow: '0 0 8px #10b981',
               display: 'inline-block',
             }}
           />
-          <MessageSquare size={17} color="var(--color-steel-blue)" />
-          <span>FIELD DISPATCH <span style={{ opacity: 0.65 }}>| 24/7</span></span>
+          <MessageSquare size={14} color="var(--color-steel-blue)" />
+          <span>FIELD DISPATCH <span style={{ opacity: 0.6 }}>| 24/7</span></span>
         </button>
       )}
 
