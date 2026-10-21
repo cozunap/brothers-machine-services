@@ -8,6 +8,7 @@ import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
 import { DispatchAgent } from './components/DispatchAgent';
 
+import { ComingSoon } from './pages/ComingSoon';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Services } from './pages/Services';
@@ -26,6 +27,29 @@ export const App: React.FC = () => {
     fetchServices().then(setServices);
     fetchGallery().then(setGallery);
   }, []);
+
+  // Toggle this flag or use ?preview=full to preview the full multi-page site
+  const isComingSoon = true;
+  const showFullSite = typeof window !== 'undefined' && window.location.search.includes('preview=full');
+
+  if (isComingSoon && !showFullSite) {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route
+            path="/*"
+            element={
+              <>
+                <ComingSoon settings={settings} />
+                <DispatchAgent settings={settings} />
+              </>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    );
+  }
 
   return (
     <BrowserRouter>
