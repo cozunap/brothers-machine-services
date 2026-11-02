@@ -10,7 +10,8 @@ export const ComingSoon: React.FC<ComingSoonProps> = ({ settings }) => {
   return (
     <div
       style={{
-        minHeight: '100vh',
+        height: '100vh',
+        maxHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -19,7 +20,8 @@ export const ComingSoon: React.FC<ComingSoonProps> = ({ settings }) => {
         position: 'relative',
         overflow: 'hidden',
         textAlign: 'center',
-        padding: 'clamp(2rem, 5vw, 4rem) 1.5rem',
+        padding: 'clamp(1rem, 3vh, 2.5rem) 1.5rem clamp(0.75rem, 2vh, 1.5rem)',
+        boxSizing: 'border-box',
       }}
       className="blueprint-grid"
     >
@@ -29,31 +31,36 @@ export const ComingSoon: React.FC<ComingSoonProps> = ({ settings }) => {
           position: 'absolute',
           inset: 0,
           background:
-            'radial-gradient(circle at 50% 40%, rgba(20, 155, 234, 0.12) 0%, rgba(4, 23, 35, 0.95) 75%)',
+            'radial-gradient(circle at 50% 45%, rgba(20, 155, 234, 0.12) 0%, rgba(4, 23, 35, 0.95) 75%)',
           zIndex: 0,
           pointerEvents: 'none',
         }}
       />
 
-      {/* Center Main Coming Soon Content */}
+      {/* Top Spacer / Brand Anchor */}
+      <div style={{ position: 'relative', zIndex: 1, minHeight: '10px' }} />
+
+      {/* Center Main Coming Soon Content (Strictly fits 100vh) */}
       <div
         style={{
           position: 'relative',
           zIndex: 1,
           maxWidth: '720px',
           marginInline: 'auto',
-          paddingBlock: 'clamp(2rem, 5vw, 4rem)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
-        {/* Emblem Logo - Enhanced Size */}
+        {/* Emblem Logo */}
         <img
           src="/logo.png"
           alt="Brothers Machine Services Corp Logo"
           style={{
-            height: 'clamp(140px, 24vw, 220px)',
+            height: 'clamp(110px, 20vh, 180px)',
             width: 'auto',
-            marginInline: 'auto',
-            marginBottom: '2.5rem',
+            marginBottom: 'clamp(1rem, 2.5vh, 1.75rem)',
             filter: 'drop-shadow(0 12px 35px rgba(0, 0, 0, 0.7))',
           }}
         />
@@ -61,12 +68,12 @@ export const ComingSoon: React.FC<ComingSoonProps> = ({ settings }) => {
         <div
           style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)',
+            fontSize: 'clamp(0.75rem, 1.4vw, 0.95rem)',
             letterSpacing: '0.25em',
             textTransform: 'uppercase',
             color: 'var(--color-steel-blue)',
             fontWeight: 700,
-            marginBottom: '1rem',
+            marginBottom: 'clamp(0.4rem, 1vh, 0.75rem)',
           }}
         >
           Brothers Machine Services Corp
@@ -74,12 +81,12 @@ export const ComingSoon: React.FC<ComingSoonProps> = ({ settings }) => {
 
         <h1
           style={{
-            fontSize: 'clamp(2.5rem, 6.5vw, 4.5rem)',
+            fontSize: 'clamp(2.2rem, 5.5vw, 3.8rem)',
             fontWeight: 800,
-            lineHeight: 1.08,
+            lineHeight: 1.1,
             color: '#ffffff',
             letterSpacing: '-0.02em',
-            marginBottom: '1.5rem',
+            marginBottom: 'clamp(0.75rem, 1.8vh, 1.25rem)',
             fontFamily: 'var(--font-heading)',
           }}
         >
@@ -88,12 +95,12 @@ export const ComingSoon: React.FC<ComingSoonProps> = ({ settings }) => {
 
         <p
           style={{
-            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+            fontSize: 'clamp(0.95rem, 1.6vw, 1.15rem)',
             color: '#94a3b8',
-            lineHeight: 1.6,
-            maxWidth: '560px',
+            lineHeight: 1.55,
+            maxWidth: '540px',
             marginInline: 'auto',
-            marginBottom: '2.5rem',
+            marginBottom: 'clamp(1.25rem, 3vh, 2rem)',
           }}
         >
           Our new digital experience is on its way. In the meantime, our outside marine machining crews are fully operational 24/7.
@@ -103,7 +110,7 @@ export const ComingSoon: React.FC<ComingSoonProps> = ({ settings }) => {
         <div
           style={{
             display: 'flex',
-            gap: '1rem',
+            gap: '0.85rem',
             justifyContent: 'center',
             flexWrap: 'wrap',
           }}
@@ -112,28 +119,28 @@ export const ComingSoon: React.FC<ComingSoonProps> = ({ settings }) => {
             href={`tel:${settings.phone.replace(/[^0-9]/g, '')}`}
             className="btn btn-primary"
             style={{
-              padding: '0.9rem 1.8rem',
-              fontSize: '0.95rem',
+              padding: 'clamp(0.7rem, 1.5vh, 0.85rem) 1.6rem',
+              fontSize: '0.9rem',
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
               textDecoration: 'none',
             }}
           >
-            <Phone size={17} />
+            <Phone size={16} />
             Call: {settings.phone}
           </a>
           <a
             href={`mailto:${settings.email}`}
             className="btn btn-secondary"
             style={{
-              padding: '0.9rem 1.8rem',
-              fontSize: '0.95rem',
+              padding: 'clamp(0.7rem, 1.5vh, 0.85rem) 1.6rem',
+              fontSize: '0.9rem',
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
               textDecoration: 'none',
             }}
           >
-            <Mail size={17} />
+            <Mail size={16} />
             Email Us
           </a>
         </div>
@@ -148,12 +155,12 @@ export const ComingSoon: React.FC<ComingSoonProps> = ({ settings }) => {
           marginInline: 'auto',
           width: '100%',
           borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-          paddingTop: '1.5rem',
+          paddingTop: 'clamp(0.75rem, 1.5vh, 1.2rem)',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
           flexWrap: 'wrap',
-          gap: '1rem',
+          gap: '0.75rem',
           fontSize: '10px',
           color: '#64748b',
         }}
