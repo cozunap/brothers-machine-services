@@ -39,12 +39,7 @@ export const App: React.FC = () => {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route
             path="/*"
-            element={
-              <>
-                <ComingSoon settings={settings} />
-                <DispatchAgent settings={settings} />
-              </>
-            }
+            element={<ComingSoon settings={settings} />}
           />
         </Routes>
       </BrowserRouter>
