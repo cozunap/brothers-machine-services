@@ -35,37 +35,6 @@ export const ComingSoon: React.FC<ComingSoonProps> = ({ settings }) => {
         }}
       />
 
-      {/* Top Bar / Minimal Brand Tag */}
-      <div style={{ position: 'relative', zIndex: 1, maxWidth: '600px', marginInline: 'auto' }}>
-        <div
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            fontSize: '0.78rem',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color: 'var(--color-steel-blue)',
-            fontWeight: 700,
-            padding: '0.4rem 1rem',
-            background: 'rgba(20, 155, 234, 0.08)',
-            border: '1px solid rgba(20, 155, 234, 0.25)',
-            borderRadius: '999px',
-          }}
-        >
-          <span
-            style={{
-              width: 7,
-              height: 7,
-              borderRadius: '50%',
-              backgroundColor: '#10b981',
-              boxShadow: '0 0 8px #10b981',
-            }}
-          />
-          <span>Stationed at GMD Navy Yard & Caddell Drydock</span>
-        </div>
-      </div>
-
       {/* Center Main Coming Soon Content */}
       <div
         style={{
@@ -73,19 +42,19 @@ export const ComingSoon: React.FC<ComingSoonProps> = ({ settings }) => {
           zIndex: 1,
           maxWidth: '720px',
           marginInline: 'auto',
-          paddingBlock: '2rem',
+          paddingBlock: 'clamp(2rem, 5vw, 4rem)',
         }}
       >
-        {/* Emblem Logo */}
+        {/* Emblem Logo - Enhanced Size */}
         <img
           src="/logo.png"
           alt="Brothers Machine Services Corp Logo"
           style={{
-            height: 'clamp(80px, 14vw, 120px)',
+            height: 'clamp(140px, 24vw, 220px)',
             width: 'auto',
             marginInline: 'auto',
-            marginBottom: '2rem',
-            filter: 'drop-shadow(0 10px 30px rgba(0, 0, 0, 0.6))',
+            marginBottom: '2.5rem',
+            filter: 'drop-shadow(0 12px 35px rgba(0, 0, 0, 0.7))',
           }}
         />
 
